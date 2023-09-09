@@ -55,7 +55,7 @@ void TTCCalculation(float distanceDiff, float velocityDiff, int gear_state)
 
 void StoppingTimeCalculation(float distanceDiff, float egoVelocity)
 {
-    FCWStoppingTime = egoVelocity/PB1_decel + reactTime;
+    FCWStoppingTime = (egoVelocity/PB1_decel) + reactTime;
     PB1StoppingTime = egoVelocity/PB1_decel;
     PB2StoppingTime = egoVelocity/PB2_decel;
     FBStoppingTime = egoVelocity/PB2_decel;
@@ -71,7 +71,7 @@ void StoppingTimeCalculation(float distanceDiff, float egoVelocity)
 //}
 
 
-void AEB(float distanceVehDiff_aux, float velocityVehDiff_aux, float Decel_aux, int roadCondition_aux, int gear_aux, int AEBStatus_aux, int EgoCarStop_aux, int StatusCollision_aux)
+void AEB(float distanceVehDiff_aux, float velocityVehDiff_aux, float velocityVehEgo_aux, float Decel_aux, int roadCondition_aux, int gear_aux, int AEBStatus_aux, int EgoCarStop_aux, int StatusCollision_aux)
 {
     //roadCondition = getRoadCondition();
     if(roadCondition !=0)
@@ -87,12 +87,7 @@ void AEB(float distanceVehDiff_aux, float velocityVehDiff_aux, float Decel_aux, 
         PB2_decel_RESULT = PB2_decel;
         FB_decel_RESULT = FB_decel;
     }
-    if (ve)
-    {
-        /* code */
-    }
-    
-    StoppingTimeCalculation(distanceVehDiff_aux,velocityVehDiff_aux);
+    StoppingTimeCalculation(distanceVehDiff_aux,velocityVehEgo_aux);
     TTCCalculation(distanceVehDiff_aux,velocityVehDiff_aux, gear_aux);
    // StateMachineAEB(TTC, FCWStoppingTime, PB1StoppingTime, PB2StoppingTime, FBStoppingTime,PB1_decel_RESULT, PB2_decel_RESULT,FB_decel_RESULT);
 }
@@ -105,21 +100,22 @@ int getRoadCondition()
 int main(int argc, char *argv[])
 {
     printf("--------Parametros Iniciais de Simulacao------\n");
-    distanceVehDiff = 50.0;
-    velocityVehDiff = 100.0;
-    velocityVehEgo = 100.0;
+    distanceVehDiff = 200.0;
+    velocityVehDiff = 50.0;
+    velocityVehEgo = 150.0;
     Decel = 0;
     roadCondition = 1;
     gear = 1;
     printf("distanceVehDiff = %f\n", distanceVehDiff);
     printf("velocityVehDiff = %f\n", velocityVehDiff);
+    printf("velocityVehEgo = %f\n", velocityVehEgo);
     printf("Decel = %f\n", Decel);
     printf("roadCondition = %d\n", roadCondition);
     printf("gear = %d\n", gear);
     printf("AEBStatus = %d\n", AEBStatus);
     printf("EgoCarStop = %d\n", EgoCarStop);
     printf("StatusCollision = %d\n", StatusCollision);
-    AEB(distanceVehDiff,velocityVehDiff, Decel, roadCondition, gear, AEBStatus, EgoCarStop, StatusCollision);
+    AEB(distanceVehDiff,velocityVehDiff, velocityVehEgo, Decel, roadCondition, gear, AEBStatus, EgoCarStop, StatusCollision);
         
     return 0;
 }
