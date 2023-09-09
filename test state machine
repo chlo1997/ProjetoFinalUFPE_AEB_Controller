@@ -1,0 +1,96 @@
+//Different state 
+typedef enum
+{
+    Default_State,
+    FWC_State,
+    Partial_Braking1_State,
+    Partial_Braking2_State,
+    Full_Braking_State,
+} eSystemState;
+
+//Different type events
+typedef enum
+{
+    stop,
+    FCWStoppingTime,
+    PB1_decel_RESULT,
+    PB2_decel_RESULT,
+    FB_decel_RESULT
+} eSystemEvent
+
+//Prototype of eventhandlers
+eSystemState DefaultState(void)
+{
+    return Default_State;
+}
+eSystemState FWCState(void)
+{
+    return FWC_State;
+}
+eSystemState PartialBraking1State(void)
+{
+    return Partial_Braking1_State;
+}
+eSystemState PartialBraking2State(void)
+{
+    return Partial_Braking2_State;
+}
+eSystemState FullBrakingState(void)
+{
+    return Full_Braking_State;
+}
+
+void StateMachineAEB()
+{
+    eSystemState eNextState = Default_State;
+    eSystemEvent eNewEvent;
+    while(1)
+    {
+        //Read system Events
+        eSystemEvent eNewEvent = ReadEvent();
+        switch(eNextState)
+        {
+        case Default_State:
+        {
+            if(Card_Insert_Event == eNewEvent)
+            {
+                eNextState = InsertCardHandler();
+            }
+        }
+        break;
+        case Card_Inserted_State:
+        {
+            if(Pin_Enter_Event == eNewEvent)
+            {
+                eNextState = EnterPinHandler();
+            }
+        }
+        break;
+        case Pin_Eentered_State:
+        {
+            if(Option_Selection_Event == eNewEvent)
+            {
+                eNextState = OptionSelectionHandler();
+            }
+        }
+        break;
+        case Option_Selected_State:
+        {
+            if(Amount_Enter_Event == eNewEvent)
+            {
+                eNextState = EnterAmountHandler();
+            }
+        }
+        break;
+        case Amount_Entered_State:
+        {
+            if(Amount_Dispatch_Event == eNewEvent)
+            {
+                eNextState = AmountDispatchHandler();
+            }
+        }
+        break;
+        default:
+            break;
+        }
+    }
