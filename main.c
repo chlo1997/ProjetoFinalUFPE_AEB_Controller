@@ -53,7 +53,7 @@ void TTCCalculation(float distanceDiff, float velocityDiff, int gear_state)
     printf("TTC %f\n", TTC);
 }
 
-void StoppingTimeCalculation(float distanceDiff, float egoVelocity)
+void StoppingTimeCalculation(float VehSpeed,float roadConditionCoeff,float driverTimeReact,float PBDecel, float FBDecel)
 {
     FCWStoppingTime = (egoVelocity/PB1_decel) + reactTime;
     PB1StoppingTime = egoVelocity/PB1_decel;
@@ -116,6 +116,6 @@ int main(int argc, char *argv[])
     printf("EgoCarStop = %d\n", EgoCarStop);
     printf("StatusCollision = %d\n", StatusCollision);
     AEB(distanceVehDiff,velocityVehDiff, velocityVehEgo, Decel, roadCondition, gear, AEBStatus, EgoCarStop, StatusCollision);
-        
+    
     return 0;
 }
