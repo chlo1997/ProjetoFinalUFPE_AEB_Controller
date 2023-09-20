@@ -32,10 +32,10 @@ float *StoppingTimeCalculation(float VehSpeed,float roadCondCoeff, float driverT
 bool SoundAlertFunction(enum AEBStatus)
 {   
     // Initialization of the variables
-    bool soundCmd;
+    bool soundCmd = false;
 
     // Verification if the AEBStatus is in either ALERT or ALERT_BRAKE
-    if(AEBStatus != 0 && AEBStatus != 1){
+    if(AEBStatus != OFF){
         soundCmd = true;
     }else{
         soundCmd = false;
@@ -43,3 +43,33 @@ bool SoundAlertFunction(enum AEBStatus)
 
     return soundCmd;
 }
+
+/**
+@brief Visual alert to the driver about emergency collision event shall be controlled by the "visualAlertControl" function
+
+@param[in] AEBStatus enum. Current AEB Status (internal command to activate Visual and Sound alert)
+@param[in] GearPos enum. Actual Selected Gear Position
+ **/
+enum VisualAlertFunction(enum AEBStatus, enum GearPos) //(1) Precisamos verificar se podemos utilizar "enum" como tipo de chamada da função VisualAlertFunction
+{   
+    // Initialization of the variables
+    enum visualCmd;
+
+    // Verification it´s status in order to activate the Visual Alert
+    if(AEBStatus == OFF)
+    {
+        visualCmd = 0; // (2)Favor verificar todas as condições deste condicional. Estes valores recebidos pela variável VisualCmd
+    }else if(GearPos == P || GearPos == N)// fazem sentido?? como devemos escrever na variável de forma coreta? Att: Bruno Rosa
+    {
+        visualCmd = 1;
+    }else if(GearPos == R)
+    {
+        visualCmd = 2;
+    }else
+    {
+        visualCmd = 3;
+    }
+
+    return visualCmd;
+}
+
