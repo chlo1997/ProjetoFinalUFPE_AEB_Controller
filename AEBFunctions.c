@@ -23,3 +23,23 @@ float *StoppingTimeCalculation(float VehSpeed,float roadCondCoeff, float driverT
 
     return StoppingTime;
 }
+
+/**
+@brief Sound alert to the driver about emergency collision event shall be controlled by the "soundAlertControl" function
+
+@param[in] AEBStatus enum. Current AEB Status (internal command to activate Visual and Sound alert)
+ **/
+bool SoundAlertFunction(enum AEBStatus)
+{   
+    // Initialization of the variables
+    bool soundCmd;
+
+    // Verification if the AEBStatus is in either ALERT or ALERT_BRAKE
+    if(AEBStatus != 0 && AEBStatus != 1){
+        soundCmd = true;
+    }else{
+        soundCmd = false;
+    }
+
+    return soundCmd;
+}
