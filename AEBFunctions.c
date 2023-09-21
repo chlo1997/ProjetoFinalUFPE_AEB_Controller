@@ -73,3 +73,51 @@ enum VisualAlertFunction(enum AEBStatus, enum GearPos) //(1) Precisamos verifica
     return visualCmd;
 }
 
+/**
+@brief AEB subsystem functions shall be enabled by the "EnablerDecision" function
+
+@param[in] VehSpeed float. Actual Vehicle Speed
+@param[in] GearPos enum. Actual Selected Gear Position
+ **/
+bool EnablerFunction(float VehSpeed, enum GearPos)
+{   
+    // Initialization of the variables
+    bool EnablerStatus;
+    float VelocidadeConvertida = 0.00;
+
+    // Must do a conversion for VehSpeed[km/h] in order to convert to [m/s]
+    VelocidadeConverida = VehSpeed*0.2778;
+
+    // Logical Process to begin the system
+    if((GearPos == "R") && ((1 <= VelocidadeConverida) && (VelocidadeConverida <= 10)))
+    {
+        EnablerStatus = true;
+    }
+    else if((GearPos == "D") && ((5 <= VelocidadeConverida) && (VelocidadeConverida <= 50)))
+    {
+        EnablerStatus = true;
+    }
+    else
+    {
+        EnablerStatus = false;
+    }
+
+    return EnablerStatus;
+}
+
+/**
+@brief Time to Collision (TTC) with the front or rear vehicle obstacle shall be determined by the "TTCCalculation" function
+
+@param[in] relativeDistance float. Relative Distance between Vehicle and Road Obstacle (lead vehicle)
+@param[in] VehSpeed float. Actual Vehicle Speed
+ **/
+float TimetoCollisionCalculation(float relativeDistance,float VehSpeed)
+{   
+    // Initialization of the variables
+    float TTC;
+
+    // While relativeDistance, VehSpeed are provided, the "TTCCalculation" function shall calculate TTC using following equation
+    TTC = relativeDistance / VehSpeed;
+
+    return TTC;
+}
