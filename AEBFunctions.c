@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include "AEBFunctions.h"
 /**
 @brief Estimates current vehicle stopping time based on current vehicle speed, road conditions, adds driver reaction time
 
