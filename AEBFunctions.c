@@ -121,3 +121,50 @@ float TimetoCollisionCalculation(float relativeDistance,float VehSpeed)
 
     return TTC;
 }
+
+/**
+@brief Arbitration about AEB status and required vehicle deceleration for safe brake shall be defined by the "AEBDecision" function
+
+@param[in] TTC float. Time to Collision with the Obstacle (lead vehicle)
+@param[in] GearPos enum. Actual Selected Gear Position
+@param[in] PBStoppingTime float. Maximum time to apply a partial braking deceleration to the vehicle 
+@param[in] FBStoppingTime float. Maximum time to apply a full braking deceleration to the vehicle
+@param[in] brakePedalStat enum. Brake Pedal Status
+ **/
+float *CollisionDecisionFunction(float TTC, enum GearPos, float PBStoppingTime, float FBStoppingTime, enum brakePedalStat)
+{   
+    // Initialization of the variables
+    enum AEBStatus;
+    float AEBDecelRef;
+    float CWarnTime;
+
+    CWarnTime = PBStoppingTime + 1;
+
+    //Conditions to reach the FCW state
+    if(((TTC <= CWarnTime) && (GearPos == R))||((brakePedalStat == Pressed) && (GearPos == D))||(brakePedalStat == Pressed)||(TTC > 1.1*PBStoppingTime))
+    {
+        AEBStatus = ALERT;
+        AEBDecelRef = 0;
+    }else if (TTC > 1.1*CWarnTime) // Conditions to reach the IDLE state
+    {
+        AEBStatus = OFF;
+        AEBDecelRef = 0;
+    }else if(((TTC <= PBStoppingTime) && (brakePedalStat == 0))||((TTC > 1.1*FBStoppingTime) && (GearPos == D))) //  Conditions to reach the PBraking state
+    {
+        AEBStatus = ALERT_BRAKE;
+        AEBDecelRef = 5.85; // Value for the Partial Breaking between [1 and 6]
+    }else if((TTC <= FBStoppingTime)||((TTC <= FBStoppingTime) && (brakePedalStat == 0)))// Conditions to reach the FBraking state
+    {
+        AEBStatus = ALERT_BRAKE;
+        AEBDecelRef = 7.92; // Value for the Full Breaking between [6 and 9]
+    }else if(((brakePedalStat == Pressed) && (GearPos == R))||((TTC <= CWarnTime) && (GearPos == R))||((TTC > 1.1*PBStoppingTime) && (GearPos == R)))// Conditions to reach the RCW state
+    {
+        AEBStatus = ALERT;
+        AEBDecelRef = 0;
+    }else
+    {
+        // Na duvida freia o carro!
+    }
+
+    return ; // Como que retorna??
+}
