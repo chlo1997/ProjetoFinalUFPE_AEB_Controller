@@ -20,24 +20,26 @@ int CollisionDecisionFunction(float TTC, int GearPos, float PBStoppingTime, floa
     printf("CWarnTime = %f\n", CWarnTime );
     printf("PBStoppingTime = %f\n",PBStoppingTime );
     printf("FBStoppingTime = %f\n",FBStoppingTime );
+    printf("MARGIN_TIME*PBStoppingTime = %f\n",MARGIN_TIME*PBStoppingTime);
     printf("GearPos = %d\n",GearPos );
     printf("brakePedalStat = %d\n",brakePedalStat);
     
-    if (TTC > 1.1*CWarnTime) // Conditions to reach the IDLE state
+    if (TTC > MARGIN_TIME*CWarnTime) // Conditions to reach the IDLE state
     {
         NextStateAEB= IDLE_STATE;
 
     }
-    else if(((TTC <= CWarnTime) && (GearPos == R))||((brakePedalStat == ON ) && (GearPos == D))||(brakePedalStat == ON)||(TTC > MARGIN_TIME*PBStoppingTime)) //Conditions to reach the FCW state
-    {
+    else if(((TTC <= CWarnTime) && (GearPos == D))||((brakePedalStat == ON ) && (GearPos == D))||(brakePedalStat == ON)||(TTC > MARGIN_TIME*PBStoppingTime)) //Conditions to reach the FCW state
+    {       
         NextStateAEB = FCW_STATE;
 
     }
-    else if(((TTC <= PBStoppingTime) && (brakePedalStat == 0))||((TTC > 1.1*FBStoppingTime) && (GearPos == D))) //  Conditions to reach the PBraking state
+    else if(((TTC <= PBStoppingTime) && (brakePedalStat == 0))||((TTC > MARGIN_TIME*FBStoppingTime) && (GearPos == D))) //  Conditions to reach the PBraking state
     {   
         NextStateAEB = PB_STATE;
 
-    }else if((TTC <= FBStoppingTime)||((TTC <= FBStoppingTime) && (brakePedalStat == 0)))// Conditions to reach the FBraking state
+    }
+    else if((TTC <= FBStoppingTime)||((TTC <= FBStoppingTime) && (brakePedalStat == 0)))// Conditions to reach the FBraking state
     {   
         NextStateAEB = FB_STATE;
 
@@ -52,7 +54,7 @@ int CollisionDecisionFunction(float TTC, int GearPos, float PBStoppingTime, floa
     }
     printf("\nNextStateAEB: %d\n", NextStateAEB);
 
-    return NextStateAEB; // return the state of AEB based the conditional conditions
+    return NextStateAEB; // return the state of AEB based on the conditional conditions
 };
 
 
@@ -61,16 +63,16 @@ int main(int argc, char *argv[])
     printf("--------Parametros Iniciais de Simulacao------\n");
     enum Gear {Drive =1, Reverse =0}GearPos;
     enum brakePedal{Pressed = 1, NotPressed = 0}brakePedalStat;
-    float TTC = 0.22;
-    GearPos = Drive;
-    float PBStoppingTime = 0.227;
-    float FBStoppingTime = 0.218;
+    float TTC = 0.18;
+    GearPos = 0;
+    float PBStoppingTime = 1.19;
+    float FBStoppingTime = 1.18;
     brakePedalStat = Pressed;
     enum enum_AEBStatus AEBStatus;
     enum enum_AEBDecel AEBDecelRef;
     enum enum_AEBStatus NextState = IDLE_STATE;// Nao vi necessidade de colocar..o programa estará no loop, entao a todo momento está vendo as condicoes do CollisionDecisionFunction
 
-    int AEBState = CollisionDecisionFunction(TTC, Drive, PBStoppingTime, FBStoppingTime, NotPressed, NextState);
+    int AEBState = CollisionDecisionFunction(TTC, GearPos, PBStoppingTime, FBStoppingTime, NotPressed, NextState);
     switch (AEBState)
     {
     case IDLE_STATE:
@@ -96,7 +98,8 @@ int main(int argc, char *argv[])
     default:
         break;
     }
-    printf("\nAEBState: %d", AEBState);
+    //printf("\nAEBState: %d", AEBState);
+    printf("-----------Saidas----------\n");
     printf("\nAEBStatus: %d", AEBStatus);
     printf("\nAEBDecelRef: %d\n", AEBDecelRef);
 
