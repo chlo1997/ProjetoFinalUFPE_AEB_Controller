@@ -2,6 +2,8 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
+#include "AEBFunctions.h"
+
 #define PB1_decel 5.27
 #define PB2_decel 6.29
 #define FB_decel 7.3
@@ -65,10 +67,6 @@ void StoppingTimeCalculation(float VehSpeed,float roadConditionCoeff,float drive
     printf("FBStoppingTime %f\n", FBStoppingTime);
     
 }
-//StateMachineAEB(TTC, FCWStoppingTime, PB1StoppingTime, PB2StoppingTime, FBStoppingTime,PB1_decel_RESULT, PB2_decel_RESULT,FB_decel_RESULT)
-//{
-    
-//}
 
 
 void AEB(float distanceVehDiff_aux, float velocityVehDiff_aux, float velocityVehEgo_aux, float Decel_aux, int roadCondition_aux, int gear_aux, int AEBStatus_aux, int EgoCarStop_aux, int StatusCollision_aux)
