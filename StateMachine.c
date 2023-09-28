@@ -8,10 +8,11 @@
 #define D 1
 #define MARGIN_TIME 1.1
 #define TimeReact 1.5
+#define FactorKM_MS 3.6
 enum enum_AEBStatus{NORMAL=0, ALERT=1, ALERT_BRAKE=2};
 enum enum_AEBDecel{ZeroDecel = 0, PBdecel = 6, FBdecel = 8};//tive que alterara pra numero inteiro por causa do enum
 enum enum_States{IDLE_STATE=0, FCW_STATE=1, PB_STATE=2, FB_STATE=3, RCW_STATE=4};
-enum Gear {Drive =1, Reverse =0};
+enum Gear {Drive =1, Reverse =0, Park = 2, Neutro = 3};
 enum brakePedal{Pressed = 1, NotPressed = 0};
 
 /**
@@ -23,7 +24,7 @@ enum brakePedal{Pressed = 1, NotPressed = 0};
 float TimetoCollisionCalculation(float relativeDistance,float VehSpeed)
 {   
     // Initialization of the variables
-    float TTC = 0;
+    float TTC = OFF;
 
     // While relativeDistance, VehSpeed are provided, the "TTCCalculation" function shall calculate TTC using following equation
     TTC = relativeDistance / VehSpeed;
@@ -34,117 +35,103 @@ float TimetoCollisionCalculation(float relativeDistance,float VehSpeed)
 int CollisionDecisionFunction(float TTC, int GearPos, float PBStoppingTime, float FBStoppingTime, int brakePedalStat, enum enum_States NextStateAEB)
 {
     // Initialization of the variables
-    float CWarnTime = 0;
-    CWarnTime = PBStoppingTime + 1;
-
-    printf("TTC = %f\n", TTC );
+    float CWarnTime = OFF;
+    CWarnTime = PBStoppingTime + MARGIN_TIME;
     printf("CWarnTime = %f\n", CWarnTime );
     printf("PBStoppingTime = %f\n",PBStoppingTime );
     printf("FBStoppingTime = %f\n",FBStoppingTime );
-    printf("MARGIN_TIME*PBStoppingTime = %f\n",MARGIN_TIME*PBStoppingTime);
-    printf("GearPos = %d\n",GearPos );
-    printf("brakePedalStat = %d\n",brakePedalStat);
     printf("\nNextStateAEB_BEFORE Switch: %d\n", NextStateAEB);
 
     switch (NextStateAEB)
     {
-    case IDLE_STATE:
-        if(((TTC <= CWarnTime) && (GearPos == D))/**||((brakePedalStat == Pressed ) && (GearPos == D))||(brakePedalStat == Pressed)||(TTC > MARGIN_TIME*PBStoppingTime) **/) //Conditions to reach the FCW state
-        {       
-            printf("\nFCW_STATE1\n");
-            NextStateAEB = FCW_STATE;      
-        }
-        else if(((TTC <= CWarnTime) && (GearPos == R)))
-        {
-            NextStateAEB = RCW_STATE;      
-        }
-        else // Conditions to reach the IDLE state
-        {   printf("\nIDLE_STATE1\n");
-            NextStateAEB= IDLE_STATE;
-        }
-  
-        break;
-    case FCW_STATE:
-
-        if(((TTC <= PBStoppingTime) && (brakePedalStat == NotPressed))) //  Conditions to reach the PBraking state
-        {   
-            printf("\nPB_STATE1\n");
-            NextStateAEB = PB_STATE;   
-        }
-        else if(TTC > MARGIN_TIME*CWarnTime)
-        {
-            printf("\nIDLE_STATE2\n");
-            NextStateAEB = IDLE_STATE;
-        }
-        else
-        {   
-            printf("\nFCW_STATE2\n");
-            NextStateAEB = FCW_STATE; 
-        }
-        break;
-    case PB_STATE:
-    {
-       if((TTC <= FBStoppingTime)||((TTC <= FBStoppingTime) && (brakePedalStat == NotPressed)))// Conditions to reach the FBraking state
-        {   printf("\nFB_STATE1\n");
-            NextStateAEB = FB_STATE;
-
-        }
-        else if(TTC > MARGIN_TIME*PBStoppingTime || brakePedalStat == Pressed)
-        {   printf("\nFCW_STATE3\n");
-            NextStateAEB = FCW_STATE;
-        }
-        else
-        {  printf("\nPB_STATE2\n");
-            NextStateAEB = PB_STATE;
-        } 
-        break;
-    }
-    case FB_STATE:
-    { 
-        if((TTC <= FBStoppingTime)||((TTC <= FBStoppingTime) && (brakePedalStat == NotPressed)))// Conditions to reach the FBraking state
-        {   printf("\nFB_STATE2\n");
-            NextStateAEB = FB_STATE;
-
-        }
-        else if((TTC > MARGIN_TIME*PBStoppingTime) && (GearPos == R) || (brakePedalStat == Pressed ) && (GearPos == R))
-        {   printf("\nFB_STATE1 - from RCW STATE\n");       
-            NextStateAEB = RCW_STATE;
-        }
-        else if(TTC > MARGIN_TIME*FBStoppingTime && (GearPos == D))
-        {   printf("\nPB_STATE3\n");
-            NextStateAEB = PB_STATE;   
-        }
-        else if( (brakePedalStat == Pressed ) && (GearPos == D))
-        {   printf("\nFCW_STATE4\n");
-            NextStateAEB = FCW_STATE;
-        }        
-        else
-        {   printf("\nFB_STATE3\n");
-            NextStateAEB = FB_STATE;
-        } 
-        break;
-    case RCW_STATE:
-            printf("\nRCW_STATE\n");
-            if((TTC <= PBStoppingTime) && (brakePedalStat == NotPressed))
+        case IDLE_STATE:
+            if(((TTC <= CWarnTime) && (GearPos == D))/**||((brakePedalStat == Pressed ) && (GearPos == D))||(brakePedalStat == Pressed)||(TTC > MARGIN_TIME*PBStoppingTime) **/) //Conditions to reach the FCW state
+            {       
+                NextStateAEB = FCW_STATE;      
+            }
+            else if(((TTC <= CWarnTime) && (GearPos == R)))
             {
-                NextStateAEB = FB_STATE;  
+                NextStateAEB = RCW_STATE;      
+            }
+            else // Conditions to reach the IDLE state
+            {   
+                NextStateAEB= IDLE_STATE;
+            }
+
+            break;
+        case FCW_STATE:
+
+            if(((TTC <= PBStoppingTime) && (brakePedalStat == NotPressed))) //  Conditions to reach the PBraking state
+            {   
+                NextStateAEB = PB_STATE;   
             }
             else if(TTC > MARGIN_TIME*CWarnTime)
             {
-                NextStateAEB = IDLE_STATE;  
+                NextStateAEB = IDLE_STATE;
             }
-            else 
-            {
-                NextStateAEB = RCW_STATE;  
+            else
+            {   
+                NextStateAEB = FCW_STATE; 
             }
-        break;  
-    }
-    default:
-        break;
-    }
-  
-  
+            break;
+        case PB_STATE:
+        {
+            if((TTC <= FBStoppingTime)||((TTC <= FBStoppingTime) && (brakePedalStat == NotPressed)))// Conditions to reach the FBraking state
+            {   
+                NextStateAEB = FB_STATE;
 
+            }
+            else if(TTC > MARGIN_TIME*PBStoppingTime || brakePedalStat == Pressed)
+            {   
+                NextStateAEB = FCW_STATE;
+            }
+            else
+            {  
+                NextStateAEB = PB_STATE;
+            } 
+            break;
+        }
+        case FB_STATE:
+        { 
+            if((TTC <= FBStoppingTime)||((TTC <= FBStoppingTime) && (brakePedalStat == NotPressed)))// Conditions to reach the FBraking state
+            {   
+                NextStateAEB = FB_STATE;
+            }
+            else if((TTC > MARGIN_TIME*PBStoppingTime) && (GearPos == R) || (brakePedalStat == Pressed ) && (GearPos == R))
+            {          
+                NextStateAEB = RCW_STATE;
+            }
+            else if(TTC > MARGIN_TIME*FBStoppingTime && (GearPos == D))
+            {   
+                NextStateAEB = PB_STATE;   
+            }
+            else if( (brakePedalStat == Pressed ) && (GearPos == D))
+            {   
+                NextStateAEB = FCW_STATE;
+            }        
+            else
+            {   
+                NextStateAEB = FB_STATE;
+            } 
+            break;
+        case RCW_STATE:
+                if((TTC <= PBStoppingTime) && (brakePedalStat == NotPressed))
+                {
+                    NextStateAEB = FB_STATE;  
+                }
+                else if(TTC > MARGIN_TIME*CWarnTime)
+                {
+                    NextStateAEB = IDLE_STATE;  
+                }
+                else 
+                {
+                    NextStateAEB = RCW_STATE;  
+                }
+            break;  
+        }
+        default:
+            break;
+    }
     printf("\nNextStateAEB_AFTER Switch: %d\n", NextStateAEB);
 
     return NextStateAEB; // return the state of AEB based on the conditional conditions
@@ -209,20 +196,17 @@ int VisualAlertFunction(int AEBStatus, enum Gear GearPos) //(1) Precisamos verif
     return visualCmd;
 }
 
-bool EnablerFunction(float VehSpeed, enum Gear GearPos)
+bool EnablerFunction(float TTC, enum Gear GearPos)
 {   
     // Initialization of the variables
     bool EnablerStatus;
-    float VehSpeed_ms = 0.00;
 
-    // Must do a conversion for VehSpeed[km/h] in order to convert to [m/s]
-    VehSpeed_ms = VehSpeed/3.6;  
     // Logical Process to begin the system
-    if((GearPos == R) && ((1 <= VehSpeed_ms ) && (VehSpeed_ms  <= 10)))
+    if((GearPos == D) && ( TTC >= 0 && TTC <= 7.2 ))
     {
         EnablerStatus = ON;
     }
-    else if((GearPos == D) && ((5 <= VehSpeed_ms ) && (VehSpeed_ms  <= 50)))
+    else if((GearPos == R) && ( TTC >= 0 && TTC <= 2 ))
     {
         EnablerStatus = ON;
     }
@@ -236,39 +220,52 @@ bool EnablerFunction(float VehSpeed, enum Gear GearPos)
 
 int main(int argc, char *argv[])
 {
-    printf("--------Parametros Iniciais de Simulacao------\n");
-    enum brakePedal brakePedalStat = NotPressed; 
-    enum Gear GearPos = 1;
-    float relativeDistance= 40.0;
-    float VehSpeed = 15.5;
-    float VehSpeed_km = VehSpeed*3.6;
-    float roadCondCoeff = 0.625;
-     int count = 0;
-    float *StoppingTime; 
-    float TTC=0; 
-
     int AEBState=OFF;
     int VisualCMD=OFF;
     int SoundCMD=OFF;
+    enum brakePedal brakePedalStat = NotPressed; 
     enum enum_AEBStatus AEBStatus = NORMAL;
     enum enum_AEBDecel AEBDecelRef = ZeroDecel;
     enum enum_AEBStatus NextState = IDLE_STATE;
     bool EnableAEB = false;
 
-    EnableAEB =  EnablerFunction(VehSpeed_km, GearPos);
-    if (EnableAEB == ON)
-    {
-        while(count<20)
-        {
-            printf("\nActual relativeDistance: %f\n",  relativeDistance);
-            printf("\nActual VehSpeed: %f m/s\n",  VehSpeed);
-            printf("\nroadCondCoeff: %f\n",  roadCondCoeff);
-            printf("\n");
+    printf("-----------Parametros Iniciais de Simulacao---------\n"); 
+    enum Gear GearPos = 1;
+    float relativeDistance= 40.0;
+    float VehSpeed = 15.5;
+    float roadCondCoeff = 0.625;
+    int count = 0;
+    float TTC=0;
+    float *StoppingTime; 
 
-            TTC = TimetoCollisionCalculation(relativeDistance,VehSpeed);
-            StoppingTime = StoppingTimeCalculation(VehSpeed,roadCondCoeff, TimeReact , PBdecel, FBdecel);
+    printf("\n Insira a Velocidade Inicial (km/h):");
+    scanf("%f",&VehSpeed);
+    float VehSpeed_ms = VehSpeed/FactorKM_MS;
+    printf("\n Insira a Distancia Relativa Inicial (m):");
+    scanf("%f",&relativeDistance);    
+    printf("\n Insira a Macha (0-R/1-D/2-P/3-N):");
+    scanf("%d",&GearPos);
+    printf("\n Insira o roadCondCoeff (0.625-Chuva ou 1-Seco):");
+    scanf("%f",&roadCondCoeff);  
+    printf("\n Insira o status do brakePedal (0-NotPressed ou 1-Pressed):");
+    scanf("%fd",&brakePedalStat); 
+    printf("\n-----------------------------------------------\n");
+   
+    while(count<20)
+    {   
+        printf("\n------------------Simulacao--------------------\n"); 
+        printf("\nActual VehSpeed: %f km/h",  VehSpeed_ms*FactorKM_MS);
+        printf("\nActual relativeDistance: %f  (m)",  relativeDistance);
+        printf("\nroadCondCoeff: %f",  roadCondCoeff);
+        TTC = TimetoCollisionCalculation(relativeDistance, VehSpeed_ms);
+        printf("\nTTC = %f\n", TTC );
+        EnableAEB =  EnablerFunction(TTC, GearPos);
+        if (EnableAEB == ON)
+        {
+            StoppingTime = StoppingTimeCalculation(VehSpeed_ms,roadCondCoeff, TimeReact , PBdecel, FBdecel);
             AEBState = CollisionDecisionFunction(TTC, GearPos, *(StoppingTime), *(StoppingTime+1), brakePedalStat, AEBState);
             VisualCMD = VisualAlertFunction(AEBStatus, GearPos);
+
             switch (AEBState)
             {
             case IDLE_STATE:
@@ -299,27 +296,28 @@ int main(int argc, char *argv[])
             default:
                 break;
             }
-            //printf("\nAEBState: %d", AEBState);
-            printf("\n---------------Saidas--------------\n");
-            printf("\nAEBStatus: %d", AEBStatus);
-            printf("\nAEBDecelRef: %d\n", AEBDecelRef);
-            printf("\nVisualCMD: %d\n",  VisualCMD);
-            printf("\n-----------------------------\n");
-
-            count ++;
-            if(VehSpeed-1 < 0 || relativeDistance - 2 < 0 )///somente simular a velocidade caindo
+            
+            if(VehSpeed_ms-1 < 0 || relativeDistance - 2 < 0 )///SIMULATE VELOCITY AND DISTANCE
             {
                 break;
             }
             relativeDistance = relativeDistance - 2;
-            VehSpeed = VehSpeed - 1;
+            VehSpeed_ms = VehSpeed_ms - 1;
             
+        } 
+        else
+        {
+            printf("\nEnableAEB: %d\n",  EnableAEB);      
         }
+        printf("\n---------------------Saidas--------------------\n");
+        printf("\nAEBStatus: %d", AEBStatus);
+        printf("\nAEBDecelRef: %d", AEBDecelRef);
+        printf("\nVisualCMD: %d",  VisualCMD);
+        printf("\nSoundCMD: %d",  SoundCMD);
+        printf("\n-----------------------------------------------\n");
 
-    }
-    else
-    {
-        printf("\nEnableAEB: %d\n",  EnableAEB);      
+
+        count ++;
     }
     return 0;
 }
