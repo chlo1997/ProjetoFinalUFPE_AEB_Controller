@@ -94,3 +94,38 @@ void StateMachineAEB()
             break;
         }
     }
+
+    
+    /**
+
+   if(((TTC <= CWarnTime) && (GearPos == D))||((brakePedalStat == ON ) && (GearPos == D))||(brakePedalStat == ON)||(TTC > MARGIN_TIME*PBStoppingTime)) //Conditions to reach the FCW state
+    {       
+        printf("\nFCW_STATE\n");
+        NextStateAEB = FCW_STATE;
+        if(((TTC <= PBStoppingTime) && (brakePedalStat == 0))/**||((TTC > MARGIN_TIME*FBStoppingTime) && (GearPos == D))) //  Conditions to reach the PBraking state
+        {   
+            printf("\nPB_STATE\n");
+            NextStateAEB = PB_STATE; 
+            if((TTC <= FBStoppingTime)||((TTC <= FBStoppingTime) && (brakePedalStat == 0)))// Conditions to reach the FBraking state
+            {   printf("\nFB_STATE\n");
+                NextStateAEB = FB_STATE;
+                
+
+            }else
+            {  
+                NextStateAEB = PB_STATE;
+            }   
+        }
+        else
+        {   
+            NextStateAEB = FCW_STATE; 
+        }
+        
+    
+    }
+    else // Conditions to reach the IDLE state
+    {
+        printf("\nIDLE_STATE\n");
+        NextStateAEB= IDLE_STATE;
+
+    } **/ 
