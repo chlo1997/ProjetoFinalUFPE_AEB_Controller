@@ -1,0 +1,312 @@
+\hypertarget{StateMachine_8c}{}\doxysection{/home/lucas/\+Documents/\+C\+I\+N/\+Projeto\+Final\+U\+F\+P\+E\+\_\+\+A\+E\+B\+\_\+\+Controller/src/\+State\+Machine.c File Reference}
+\label{StateMachine_8c}\index{/home/lucas/Documents/CIN/ProjetoFinalUFPE\_AEB\_Controller/src/StateMachine.c@{/home/lucas/Documents/CIN/ProjetoFinalUFPE\_AEB\_Controller/src/StateMachine.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+Include dependency graph for State\+Machine.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{StateMachine_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{StateMachine_8c_a29e413f6725b2ba32d165ffaa35b01e5}{O\+FF}}~0
+\item 
+\#define \mbox{\hyperlink{StateMachine_8c_ad76d1750a6cdeebd506bfcd6752554d2}{ON}}~1
+\item 
+\#define \mbox{\hyperlink{StateMachine_8c_a5c71a5e59a53413cd6c270266d63b031}{R}}~0
+\item 
+\#define \mbox{\hyperlink{StateMachine_8c_af316c33cc298530f245e8b55330e86b5}{D}}~1
+\item 
+\#define \mbox{\hyperlink{StateMachine_8c_a61f73c6d179f822564b7bdfb6ddfdc20}{M\+A\+R\+G\+I\+N\+\_\+\+T\+I\+ME}}~1.\+1
+\item 
+\#define \mbox{\hyperlink{StateMachine_8c_a71562860e589a00172077d13d1216f7c}{Time\+React}}~1.\+5
+\item 
+\#define \mbox{\hyperlink{StateMachine_8c_a6dad3c119e787e5c522005ee5faa401c}{Factor\+K\+M\+\_\+\+MS}}~3.\+6
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336}{enum\+\_\+\+A\+E\+B\+Status}} \{ \mbox{\hyperlink{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336a50d1448013c6f17125caee18aa418af7}{N\+O\+R\+M\+AL}} =0, 
+\mbox{\hyperlink{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336a45e0bb0f520fb3851c7d6cc5c5ddd6f9}{A\+L\+E\+RT}} =1, 
+\mbox{\hyperlink{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336ace992d9c39373cec057f9211f51775ac}{A\+L\+E\+R\+T\+\_\+\+B\+R\+A\+KE}} =2
+ \}
+\item 
+enum \mbox{\hyperlink{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2}{enum\+\_\+\+A\+E\+B\+Decel}} \{ \mbox{\hyperlink{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2a696b9bab798ad38fe6030cfa9e6529d9}{Zero\+Decel}} = 0, 
+\mbox{\hyperlink{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2af5edda5b0f4e4ffe17eef83e8fa18025}{P\+Bdecel}} = 6, 
+\mbox{\hyperlink{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2aaf1157abbd8eac294cb65a0347583643}{F\+Bdecel}} = 8
+ \}
+\item 
+enum \mbox{\hyperlink{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1}{enum\+\_\+\+States}} \{ \newline
+\mbox{\hyperlink{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1aeca4500f6f729608a014643f8c8f4003}{I\+D\+L\+E\+\_\+\+S\+T\+A\+TE}} =0, 
+\mbox{\hyperlink{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1ab164798d370b4afdab59f3af4026cbd0}{F\+C\+W\+\_\+\+S\+T\+A\+TE}} =1, 
+\mbox{\hyperlink{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1a66041010b2b6852aa56190733a0ad263}{P\+B\+\_\+\+S\+T\+A\+TE}} =2, 
+\mbox{\hyperlink{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1a193820ec47c22231b55ebb00622b5ca0}{F\+B\+\_\+\+S\+T\+A\+TE}} =3, 
+\newline
+\mbox{\hyperlink{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1a5920c67c9da1bcb6c7ec8b1128f44757}{R\+C\+W\+\_\+\+S\+T\+A\+TE}} =4
+ \}
+\item 
+enum \mbox{\hyperlink{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09}{Gear}} \{ \mbox{\hyperlink{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09a1254942834ebd7f4d71182b5476a6327}{Drive}} =1, 
+\mbox{\hyperlink{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09a1dca99473fea7a2f11c69a68a779c9f2}{Reverse}} =0, 
+\mbox{\hyperlink{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09af267d25b1536bb9639359131302c00cc}{Park}} = 2, 
+\mbox{\hyperlink{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09a9d6a4ed1ca3b2f62307c3168c7df4aea}{Neutro}} = 3
+ \}
+\item 
+enum \mbox{\hyperlink{StateMachine_8c_a4c9276a480c7494f391032346c1a6a50}{brake\+Pedal}} \{ \mbox{\hyperlink{StateMachine_8c_a4c9276a480c7494f391032346c1a6a50a05f4abb2322aa023aba9570c327aff25}{Pressed}} = 1, 
+\mbox{\hyperlink{StateMachine_8c_a4c9276a480c7494f391032346c1a6a50ab8598baba9fdb22dd1003b68eebebd7a}{Not\+Pressed}} = 0
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{StateMachine_8c_af06995420a3a75d4d2a8c33ebfc09d47}{Timeto\+Collision\+Calculation}} (float relative\+Distance, float Veh\+Speed)
+\begin{DoxyCompactList}\small\item\em Time to Collision (T\+TC) with the front or rear vehicle obstacle shall be determined by the \char`\"{}\+T\+T\+C\+Calculation\char`\"{} function. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{StateMachine_8c_a13f2a7870726615a89fc0407ee4b0d28}{Collision\+Decision\+Function}} (float \mbox{\hyperlink{main_8c_a466926b479e4fe093b6ff40cb37ee302}{T\+TC}}, int Gear\+Pos, float P\+B\+Stopping\+Time, float \mbox{\hyperlink{main_8c_a635cf9bec07c3dcf4757480b172f0e86}{F\+B\+Stopping\+Time}}, int brake\+Pedal\+Stat, enum \mbox{\hyperlink{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1}{enum\+\_\+\+States}} Next\+State\+A\+EB)
+\item 
+float $\ast$ \mbox{\hyperlink{StateMachine_8c_ae4f796faefc37b4794493cf97ba1fc7c}{Stopping\+Time\+Calculation}} (float Veh\+Speed, float road\+Cond\+Coeff, float driver\+Time\+React, float P\+B\+Decel, float F\+B\+Decel)
+\begin{DoxyCompactList}\small\item\em Estimates current vehicle stopping time based on current vehicle speed, road conditions, adds driver reaction time. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{StateMachine_8c_a26a1196816ed8cfe337e2de1acfd0cd3}{Visual\+Alert\+Function}} (int \mbox{\hyperlink{main_8c_ae3858dec078d437332f5ece74cceda97}{A\+E\+B\+Status}}, enum \mbox{\hyperlink{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09}{Gear}} Gear\+Pos)
+\begin{DoxyCompactList}\small\item\em Visual alert to the driver about emergency collision event shall be controlled by the \char`\"{}visual\+Alert\+Control\char`\"{} function. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{StateMachine_8c_af62969cea0c26771bb0b6ad92780dc24}{Enabler\+Function}} (float \mbox{\hyperlink{main_8c_a466926b479e4fe093b6ff40cb37ee302}{T\+TC}}, enum \mbox{\hyperlink{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09}{Gear}} Gear\+Pos)
+\item 
+int \mbox{\hyperlink{StateMachine_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{StateMachine_8c_af316c33cc298530f245e8b55330e86b5}\label{StateMachine_8c_af316c33cc298530f245e8b55330e86b5}} 
+\index{StateMachine.c@{StateMachine.c}!D@{D}}
+\index{D@{D}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{D}{D}}
+{\footnotesize\ttfamily \#define D~1}
+
+\mbox{\Hypertarget{StateMachine_8c_a6dad3c119e787e5c522005ee5faa401c}\label{StateMachine_8c_a6dad3c119e787e5c522005ee5faa401c}} 
+\index{StateMachine.c@{StateMachine.c}!FactorKM\_MS@{FactorKM\_MS}}
+\index{FactorKM\_MS@{FactorKM\_MS}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{FactorKM\_MS}{FactorKM\_MS}}
+{\footnotesize\ttfamily \#define Factor\+K\+M\+\_\+\+MS~3.\+6}
+
+\mbox{\Hypertarget{StateMachine_8c_a61f73c6d179f822564b7bdfb6ddfdc20}\label{StateMachine_8c_a61f73c6d179f822564b7bdfb6ddfdc20}} 
+\index{StateMachine.c@{StateMachine.c}!MARGIN\_TIME@{MARGIN\_TIME}}
+\index{MARGIN\_TIME@{MARGIN\_TIME}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{MARGIN\_TIME}{MARGIN\_TIME}}
+{\footnotesize\ttfamily \#define M\+A\+R\+G\+I\+N\+\_\+\+T\+I\+ME~1.\+1}
+
+\mbox{\Hypertarget{StateMachine_8c_a29e413f6725b2ba32d165ffaa35b01e5}\label{StateMachine_8c_a29e413f6725b2ba32d165ffaa35b01e5}} 
+\index{StateMachine.c@{StateMachine.c}!OFF@{OFF}}
+\index{OFF@{OFF}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{OFF}{OFF}}
+{\footnotesize\ttfamily \#define O\+FF~0}
+
+\mbox{\Hypertarget{StateMachine_8c_ad76d1750a6cdeebd506bfcd6752554d2}\label{StateMachine_8c_ad76d1750a6cdeebd506bfcd6752554d2}} 
+\index{StateMachine.c@{StateMachine.c}!ON@{ON}}
+\index{ON@{ON}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{ON}{ON}}
+{\footnotesize\ttfamily \#define ON~1}
+
+\mbox{\Hypertarget{StateMachine_8c_a5c71a5e59a53413cd6c270266d63b031}\label{StateMachine_8c_a5c71a5e59a53413cd6c270266d63b031}} 
+\index{StateMachine.c@{StateMachine.c}!R@{R}}
+\index{R@{R}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{R}{R}}
+{\footnotesize\ttfamily \#define R~0}
+
+\mbox{\Hypertarget{StateMachine_8c_a71562860e589a00172077d13d1216f7c}\label{StateMachine_8c_a71562860e589a00172077d13d1216f7c}} 
+\index{StateMachine.c@{StateMachine.c}!TimeReact@{TimeReact}}
+\index{TimeReact@{TimeReact}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{TimeReact}{TimeReact}}
+{\footnotesize\ttfamily \#define Time\+React~1.\+5}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{StateMachine_8c_a4c9276a480c7494f391032346c1a6a50}\label{StateMachine_8c_a4c9276a480c7494f391032346c1a6a50}} 
+\index{StateMachine.c@{StateMachine.c}!brakePedal@{brakePedal}}
+\index{brakePedal@{brakePedal}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{brakePedal}{brakePedal}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{StateMachine_8c_a4c9276a480c7494f391032346c1a6a50}{brake\+Pedal}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Pressed@{Pressed}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!Pressed@{Pressed}}}\mbox{\Hypertarget{StateMachine_8c_a4c9276a480c7494f391032346c1a6a50a05f4abb2322aa023aba9570c327aff25}\label{StateMachine_8c_a4c9276a480c7494f391032346c1a6a50a05f4abb2322aa023aba9570c327aff25}} 
+Pressed&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NotPressed@{NotPressed}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!NotPressed@{NotPressed}}}\mbox{\Hypertarget{StateMachine_8c_a4c9276a480c7494f391032346c1a6a50ab8598baba9fdb22dd1003b68eebebd7a}\label{StateMachine_8c_a4c9276a480c7494f391032346c1a6a50ab8598baba9fdb22dd1003b68eebebd7a}} 
+Not\+Pressed&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2}\label{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2}} 
+\index{StateMachine.c@{StateMachine.c}!enum\_AEBDecel@{enum\_AEBDecel}}
+\index{enum\_AEBDecel@{enum\_AEBDecel}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{enum\_AEBDecel}{enum\_AEBDecel}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2}{enum\+\_\+\+A\+E\+B\+Decel}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ZeroDecel@{ZeroDecel}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!ZeroDecel@{ZeroDecel}}}\mbox{\Hypertarget{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2a696b9bab798ad38fe6030cfa9e6529d9}\label{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2a696b9bab798ad38fe6030cfa9e6529d9}} 
+Zero\+Decel&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PBdecel@{PBdecel}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!PBdecel@{PBdecel}}}\mbox{\Hypertarget{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2af5edda5b0f4e4ffe17eef83e8fa18025}\label{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2af5edda5b0f4e4ffe17eef83e8fa18025}} 
+P\+Bdecel&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FBdecel@{FBdecel}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!FBdecel@{FBdecel}}}\mbox{\Hypertarget{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2aaf1157abbd8eac294cb65a0347583643}\label{StateMachine_8c_a697fc0b829858a977b47c8873acdcfe2aaf1157abbd8eac294cb65a0347583643}} 
+F\+Bdecel&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336}\label{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336}} 
+\index{StateMachine.c@{StateMachine.c}!enum\_AEBStatus@{enum\_AEBStatus}}
+\index{enum\_AEBStatus@{enum\_AEBStatus}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{enum\_AEBStatus}{enum\_AEBStatus}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336}{enum\+\_\+\+A\+E\+B\+Status}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NORMAL@{NORMAL}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!NORMAL@{NORMAL}}}\mbox{\Hypertarget{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336a50d1448013c6f17125caee18aa418af7}\label{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336a50d1448013c6f17125caee18aa418af7}} 
+N\+O\+R\+M\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALERT@{ALERT}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!ALERT@{ALERT}}}\mbox{\Hypertarget{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336a45e0bb0f520fb3851c7d6cc5c5ddd6f9}\label{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336a45e0bb0f520fb3851c7d6cc5c5ddd6f9}} 
+A\+L\+E\+RT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ALERT\_BRAKE@{ALERT\_BRAKE}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!ALERT\_BRAKE@{ALERT\_BRAKE}}}\mbox{\Hypertarget{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336ace992d9c39373cec057f9211f51775ac}\label{StateMachine_8c_ab670c8741fdb0ca89b6df5f0ed86f336ace992d9c39373cec057f9211f51775ac}} 
+A\+L\+E\+R\+T\+\_\+\+B\+R\+A\+KE&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1}\label{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1}} 
+\index{StateMachine.c@{StateMachine.c}!enum\_States@{enum\_States}}
+\index{enum\_States@{enum\_States}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{enum\_States}{enum\_States}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1}{enum\+\_\+\+States}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IDLE\_STATE@{IDLE\_STATE}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!IDLE\_STATE@{IDLE\_STATE}}}\mbox{\Hypertarget{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1aeca4500f6f729608a014643f8c8f4003}\label{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1aeca4500f6f729608a014643f8c8f4003}} 
+I\+D\+L\+E\+\_\+\+S\+T\+A\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FCW\_STATE@{FCW\_STATE}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!FCW\_STATE@{FCW\_STATE}}}\mbox{\Hypertarget{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1ab164798d370b4afdab59f3af4026cbd0}\label{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1ab164798d370b4afdab59f3af4026cbd0}} 
+F\+C\+W\+\_\+\+S\+T\+A\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{PB\_STATE@{PB\_STATE}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!PB\_STATE@{PB\_STATE}}}\mbox{\Hypertarget{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1a66041010b2b6852aa56190733a0ad263}\label{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1a66041010b2b6852aa56190733a0ad263}} 
+P\+B\+\_\+\+S\+T\+A\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FB\_STATE@{FB\_STATE}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!FB\_STATE@{FB\_STATE}}}\mbox{\Hypertarget{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1a193820ec47c22231b55ebb00622b5ca0}\label{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1a193820ec47c22231b55ebb00622b5ca0}} 
+F\+B\+\_\+\+S\+T\+A\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RCW\_STATE@{RCW\_STATE}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!RCW\_STATE@{RCW\_STATE}}}\mbox{\Hypertarget{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1a5920c67c9da1bcb6c7ec8b1128f44757}\label{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1a5920c67c9da1bcb6c7ec8b1128f44757}} 
+R\+C\+W\+\_\+\+S\+T\+A\+TE&\\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\Hypertarget{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09}\label{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09}} 
+\index{StateMachine.c@{StateMachine.c}!Gear@{Gear}}
+\index{Gear@{Gear}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{Gear}{Gear}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09}{Gear}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Drive@{Drive}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!Drive@{Drive}}}\mbox{\Hypertarget{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09a1254942834ebd7f4d71182b5476a6327}\label{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09a1254942834ebd7f4d71182b5476a6327}} 
+Drive&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Reverse@{Reverse}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!Reverse@{Reverse}}}\mbox{\Hypertarget{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09a1dca99473fea7a2f11c69a68a779c9f2}\label{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09a1dca99473fea7a2f11c69a68a779c9f2}} 
+Reverse&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Park@{Park}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!Park@{Park}}}\mbox{\Hypertarget{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09af267d25b1536bb9639359131302c00cc}\label{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09af267d25b1536bb9639359131302c00cc}} 
+Park&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Neutro@{Neutro}!StateMachine.c@{StateMachine.c}}\index{StateMachine.c@{StateMachine.c}!Neutro@{Neutro}}}\mbox{\Hypertarget{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09a9d6a4ed1ca3b2f62307c3168c7df4aea}\label{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09a9d6a4ed1ca3b2f62307c3168c7df4aea}} 
+Neutro&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{StateMachine_8c_a13f2a7870726615a89fc0407ee4b0d28}\label{StateMachine_8c_a13f2a7870726615a89fc0407ee4b0d28}} 
+\index{StateMachine.c@{StateMachine.c}!CollisionDecisionFunction@{CollisionDecisionFunction}}
+\index{CollisionDecisionFunction@{CollisionDecisionFunction}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{CollisionDecisionFunction()}{CollisionDecisionFunction()}}
+{\footnotesize\ttfamily int Collision\+Decision\+Function (\begin{DoxyParamCaption}\item[{float}]{T\+TC,  }\item[{int}]{Gear\+Pos,  }\item[{float}]{P\+B\+Stopping\+Time,  }\item[{float}]{F\+B\+Stopping\+Time,  }\item[{int}]{brake\+Pedal\+Stat,  }\item[{enum \mbox{\hyperlink{StateMachine_8c_afc716a390b1a76957803f8faf21ab9a1}{enum\+\_\+\+States}}}]{Next\+State\+A\+EB }\end{DoxyParamCaption})}
+
+$\vert$$\vert$((brake\+Pedal\+Stat == Pressed ) \&\& (Gear\+Pos == D))$\vert$$\vert$(brake\+Pedal\+Stat == Pressed)$\vert$$\vert$(T\+TC $>$ M\+A\+R\+G\+I\+N\+\_\+\+T\+I\+M\+E$\ast$\+P\+B\+Stopping\+Time)\mbox{\Hypertarget{StateMachine_8c_af62969cea0c26771bb0b6ad92780dc24}\label{StateMachine_8c_af62969cea0c26771bb0b6ad92780dc24}} 
+\index{StateMachine.c@{StateMachine.c}!EnablerFunction@{EnablerFunction}}
+\index{EnablerFunction@{EnablerFunction}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{EnablerFunction()}{EnablerFunction()}}
+{\footnotesize\ttfamily bool Enabler\+Function (\begin{DoxyParamCaption}\item[{float}]{T\+TC,  }\item[{enum \mbox{\hyperlink{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09}{Gear}}}]{Gear\+Pos }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{StateMachine_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{StateMachine_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{StateMachine.c@{StateMachine.c}!main@{main}}
+\index{main@{main}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+S\+I\+M\+U\+L\+A\+TE V\+E\+L\+O\+C\+I\+TY A\+ND D\+I\+S\+T\+A\+N\+CE\mbox{\Hypertarget{StateMachine_8c_ae4f796faefc37b4794493cf97ba1fc7c}\label{StateMachine_8c_ae4f796faefc37b4794493cf97ba1fc7c}} 
+\index{StateMachine.c@{StateMachine.c}!StoppingTimeCalculation@{StoppingTimeCalculation}}
+\index{StoppingTimeCalculation@{StoppingTimeCalculation}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{StoppingTimeCalculation()}{StoppingTimeCalculation()}}
+{\footnotesize\ttfamily float$\ast$ Stopping\+Time\+Calculation (\begin{DoxyParamCaption}\item[{float}]{Veh\+Speed,  }\item[{float}]{road\+Cond\+Coeff,  }\item[{float}]{driver\+Time\+React,  }\item[{float}]{P\+B\+Decel,  }\item[{float}]{F\+B\+Decel }\end{DoxyParamCaption})}
+
+
+
+Estimates current vehicle stopping time based on current vehicle speed, road conditions, adds driver reaction time. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Veh\+Speed} & float. Actual Vehicle Speed \\
+\hline
+\mbox{\texttt{ in}}  & {\em road\+Cond\+Coeff} & float. Percentage of friction coefficient of the road based on vehicle measured climate conditions (wet or dry) \\
+\hline
+\mbox{\texttt{ in}}  & {\em driver\+Time\+React} & float. Configurable additional Driver\textquotesingle{}s Time Reaction to press Brake pedal \\
+\hline
+\mbox{\texttt{ in}}  & {\em P\+B\+Decel} & float. Configurable Partial Braking Deceleration used by A\+EB as deceleration reference \\
+\hline
+\mbox{\texttt{ in}}  & {\em F\+B\+Decel} & float. Configurable Full Braking Deceleration used by A\+EB as deceleration reference \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{StateMachine_8c_af06995420a3a75d4d2a8c33ebfc09d47}\label{StateMachine_8c_af06995420a3a75d4d2a8c33ebfc09d47}} 
+\index{StateMachine.c@{StateMachine.c}!TimetoCollisionCalculation@{TimetoCollisionCalculation}}
+\index{TimetoCollisionCalculation@{TimetoCollisionCalculation}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{TimetoCollisionCalculation()}{TimetoCollisionCalculation()}}
+{\footnotesize\ttfamily float Timeto\+Collision\+Calculation (\begin{DoxyParamCaption}\item[{float}]{relative\+Distance,  }\item[{float}]{Veh\+Speed }\end{DoxyParamCaption})}
+
+
+
+Time to Collision (T\+TC) with the front or rear vehicle obstacle shall be determined by the \char`\"{}\+T\+T\+C\+Calculation\char`\"{} function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em relative\+Distance} & float. Relative Distance between Vehicle and Road Obstacle (lead vehicle) \\
+\hline
+\mbox{\texttt{ in}}  & {\em Veh\+Speed} & float. Actual Vehicle Speed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{StateMachine_8c_a26a1196816ed8cfe337e2de1acfd0cd3}\label{StateMachine_8c_a26a1196816ed8cfe337e2de1acfd0cd3}} 
+\index{StateMachine.c@{StateMachine.c}!VisualAlertFunction@{VisualAlertFunction}}
+\index{VisualAlertFunction@{VisualAlertFunction}!StateMachine.c@{StateMachine.c}}
+\doxysubsubsection{\texorpdfstring{VisualAlertFunction()}{VisualAlertFunction()}}
+{\footnotesize\ttfamily int Visual\+Alert\+Function (\begin{DoxyParamCaption}\item[{int}]{A\+E\+B\+Status,  }\item[{enum \mbox{\hyperlink{StateMachine_8c_a3d6f1038e1d0f50342edabb60ef9bc09}{Gear}}}]{Gear\+Pos }\end{DoxyParamCaption})}
+
+
+
+Visual alert to the driver about emergency collision event shall be controlled by the \char`\"{}visual\+Alert\+Control\char`\"{} function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A\+E\+B\+Status} & enum. Current A\+EB Status (internal command to activate Visual and Sound alert) \\
+\hline
+\mbox{\texttt{ in}}  & {\em Gear\+Pos} & enum. Actual Selected Gear Position \\
+\hline
+\end{DoxyParams}

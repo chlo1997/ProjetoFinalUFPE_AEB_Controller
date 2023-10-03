@@ -1,0 +1,313 @@
+\hypertarget{main_8c}{}\doxysection{/home/lucas/\+Documents/\+C\+I\+N/\+Projeto\+Final\+U\+F\+P\+E\+\_\+\+A\+E\+B\+\_\+\+Controller/main.c File Reference}
+\label{main_8c}\index{/home/lucas/Documents/CIN/ProjetoFinalUFPE\_AEB\_Controller/main.c@{/home/lucas/Documents/CIN/ProjetoFinalUFPE\_AEB\_Controller/main.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}A\+E\+B\+Functions.\+h\char`\"{}}\newline
+Include dependency graph for main.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8c_ae69e075d1d0c49f988615b1c2702b2de}{P\+B1\+\_\+decel}}~5.\+27
+\item 
+\#define \mbox{\hyperlink{main_8c_a678aa6a9ca129c6b9bbcbfaf0d0348df}{P\+B2\+\_\+decel}}~6.\+29
+\item 
+\#define \mbox{\hyperlink{main_8c_a6c53d27fa7687c72a4d43321c5d3621c}{F\+B\+\_\+decel}}~7.\+3
+\item 
+\#define \mbox{\hyperlink{main_8c_aec40f61f9201ccb2e776f222bb6c286a}{rain\+Parameter}}~0.\+625
+\item 
+\#define \mbox{\hyperlink{main_8c_af16152ffe1489bfa11b01bdee7572426}{min\+Velocity}}~1.\+38
+\item 
+\#define \mbox{\hyperlink{main_8c_a095540ad1bdf4063c84de61db182afd3}{react\+Time}}~1.\+5
+\item 
+\#define \mbox{\hyperlink{main_8c_a6e6c4e84992d47418c949ac21bbef202}{Frontal\+Safety\+Distance}}~10.\+0
+\item 
+\#define \mbox{\hyperlink{main_8c_ac0986faad1aa94ac6769f28430720018}{Rear\+Safety\+Distance}}~0.\+1
+\item 
+\#define \mbox{\hyperlink{main_8c_add3ca9eefe3b5b754426f51d3043e579}{True}}~1
+\item 
+\#define \mbox{\hyperlink{main_8c_a306ebd41c0cd1303b1372c6153f0caf8}{False}}~0
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_a862bd7a9ca51cc843fc1c6e2bebc5bd8}{T\+T\+C\+Calculation}} (float distance\+Diff, float velocity\+Diff, int gear\+\_\+state)
+\item 
+void \mbox{\hyperlink{main_8c_a10864ef0f95b40880507be17cf1df9a0}{Stopping\+Time\+Calculation}} (float Veh\+Speed, float road\+Condition\+Coeff, float driver\+Time\+React, float P\+B\+Decel, float F\+B\+Decel)
+\item 
+void \mbox{\hyperlink{main_8c_a771f035e9b04d5d5ba920d3e7fcdce96}{A\+EB}} (float distance\+Veh\+Diff\+\_\+aux, float velocity\+Veh\+Diff\+\_\+aux, float velocity\+Veh\+Ego\+\_\+aux, float Decel\+\_\+aux, int road\+Condition\+\_\+aux, int gear\+\_\+aux, int A\+E\+B\+Status\+\_\+aux, int Ego\+Car\+Stop\+\_\+aux, int Status\+Collision\+\_\+aux)
+\item 
+int \mbox{\hyperlink{main_8c_a069fda689be224722658eda819195612}{get\+Road\+Condition}} ()
+\item 
+int \mbox{\hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{main_8c_a5b86fa4077742364f55e96e853fdb566}{distance\+Veh\+Diff}}
+\item 
+float \mbox{\hyperlink{main_8c_a7a20b79abf4b33f4e92602bfc4fe34b1}{velocity\+Veh\+Diff}}
+\item 
+float \mbox{\hyperlink{main_8c_ae263d1f6fdb5393874e416838691e116}{velocity\+Veh\+Ego}}
+\item 
+float \mbox{\hyperlink{main_8c_a5af09f5e634f55959684276af78d5490}{Decel}}
+\item 
+float \mbox{\hyperlink{main_8c_a76a4c51928c208c6e62fb3f915fedb2e}{P\+B1\+\_\+decel\+\_\+\+R\+E\+S\+U\+LT}}
+\item 
+float \mbox{\hyperlink{main_8c_aa81bb54e8f3488532831669d192fdf17}{P\+B2\+\_\+decel\+\_\+\+R\+E\+S\+U\+LT}}
+\item 
+float \mbox{\hyperlink{main_8c_ad71ee5c547b1b6623d943e688805cf48}{F\+B\+\_\+decel\+\_\+\+R\+E\+S\+U\+LT}}
+\item 
+float \mbox{\hyperlink{main_8c_a538fdb19c669287922239c60f4a6c9ff}{P\+B1\+Stopping\+Time}}
+\item 
+float \mbox{\hyperlink{main_8c_acc2629124661abd70c4ac174c7fb167e}{P\+B2\+Stopping\+Time}}
+\item 
+float \mbox{\hyperlink{main_8c_a635cf9bec07c3dcf4757480b172f0e86}{F\+B\+Stopping\+Time}}
+\item 
+float \mbox{\hyperlink{main_8c_a2be9689e95e35a42cbfc0a00716f9e2f}{F\+C\+W\+Stopping\+Time}}
+\item 
+float \mbox{\hyperlink{main_8c_a466926b479e4fe093b6ff40cb37ee302}{T\+TC}} = 0
+\item 
+int \mbox{\hyperlink{main_8c_a007ce468a356a5a3b04126ca8364a09b}{road\+Condition}}
+\item 
+int \mbox{\hyperlink{main_8c_a59a96c27030264864f20d72caccc7429}{gear}}
+\item 
+int \mbox{\hyperlink{main_8c_ae3858dec078d437332f5ece74cceda97}{A\+E\+B\+Status}}
+\item 
+int \mbox{\hyperlink{main_8c_ad07330b9f5efb1a7754f994580d76816}{F\+C\+Wactivate}}
+\item 
+int \mbox{\hyperlink{main_8c_a9bc572f1c278d05742961c39624461c8}{Ego\+Car\+Stop}}
+\item 
+int \mbox{\hyperlink{main_8c_a8527eb5197ac390b1e8a6822d7ec45a9}{Frontal\+Status\+Colision}}
+\item 
+int \mbox{\hyperlink{main_8c_a6ff50a90ce03c9ef11b8b0fa587a7c7b}{Rear\+Status\+Colision}}
+\item 
+int \mbox{\hyperlink{main_8c_aba13b371e8c690d763000ea78be0b565}{Status\+Collision}} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{main_8c_a306ebd41c0cd1303b1372c6153f0caf8}\label{main_8c_a306ebd41c0cd1303b1372c6153f0caf8}} 
+\index{main.c@{main.c}!False@{False}}
+\index{False@{False}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{False}{False}}
+{\footnotesize\ttfamily \#define False~0}
+
+\mbox{\Hypertarget{main_8c_a6c53d27fa7687c72a4d43321c5d3621c}\label{main_8c_a6c53d27fa7687c72a4d43321c5d3621c}} 
+\index{main.c@{main.c}!FB\_decel@{FB\_decel}}
+\index{FB\_decel@{FB\_decel}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{FB\_decel}{FB\_decel}}
+{\footnotesize\ttfamily \#define F\+B\+\_\+decel~7.\+3}
+
+\mbox{\Hypertarget{main_8c_a6e6c4e84992d47418c949ac21bbef202}\label{main_8c_a6e6c4e84992d47418c949ac21bbef202}} 
+\index{main.c@{main.c}!FrontalSafetyDistance@{FrontalSafetyDistance}}
+\index{FrontalSafetyDistance@{FrontalSafetyDistance}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{FrontalSafetyDistance}{FrontalSafetyDistance}}
+{\footnotesize\ttfamily \#define Frontal\+Safety\+Distance~10.\+0}
+
+\mbox{\Hypertarget{main_8c_af16152ffe1489bfa11b01bdee7572426}\label{main_8c_af16152ffe1489bfa11b01bdee7572426}} 
+\index{main.c@{main.c}!minVelocity@{minVelocity}}
+\index{minVelocity@{minVelocity}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{minVelocity}{minVelocity}}
+{\footnotesize\ttfamily \#define min\+Velocity~1.\+38}
+
+\mbox{\Hypertarget{main_8c_ae69e075d1d0c49f988615b1c2702b2de}\label{main_8c_ae69e075d1d0c49f988615b1c2702b2de}} 
+\index{main.c@{main.c}!PB1\_decel@{PB1\_decel}}
+\index{PB1\_decel@{PB1\_decel}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{PB1\_decel}{PB1\_decel}}
+{\footnotesize\ttfamily \#define P\+B1\+\_\+decel~5.\+27}
+
+\mbox{\Hypertarget{main_8c_a678aa6a9ca129c6b9bbcbfaf0d0348df}\label{main_8c_a678aa6a9ca129c6b9bbcbfaf0d0348df}} 
+\index{main.c@{main.c}!PB2\_decel@{PB2\_decel}}
+\index{PB2\_decel@{PB2\_decel}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{PB2\_decel}{PB2\_decel}}
+{\footnotesize\ttfamily \#define P\+B2\+\_\+decel~6.\+29}
+
+\mbox{\Hypertarget{main_8c_aec40f61f9201ccb2e776f222bb6c286a}\label{main_8c_aec40f61f9201ccb2e776f222bb6c286a}} 
+\index{main.c@{main.c}!rainParameter@{rainParameter}}
+\index{rainParameter@{rainParameter}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{rainParameter}{rainParameter}}
+{\footnotesize\ttfamily \#define rain\+Parameter~0.\+625}
+
+\mbox{\Hypertarget{main_8c_a095540ad1bdf4063c84de61db182afd3}\label{main_8c_a095540ad1bdf4063c84de61db182afd3}} 
+\index{main.c@{main.c}!reactTime@{reactTime}}
+\index{reactTime@{reactTime}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{reactTime}{reactTime}}
+{\footnotesize\ttfamily \#define react\+Time~1.\+5}
+
+\mbox{\Hypertarget{main_8c_ac0986faad1aa94ac6769f28430720018}\label{main_8c_ac0986faad1aa94ac6769f28430720018}} 
+\index{main.c@{main.c}!RearSafetyDistance@{RearSafetyDistance}}
+\index{RearSafetyDistance@{RearSafetyDistance}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{RearSafetyDistance}{RearSafetyDistance}}
+{\footnotesize\ttfamily \#define Rear\+Safety\+Distance~0.\+1}
+
+\mbox{\Hypertarget{main_8c_add3ca9eefe3b5b754426f51d3043e579}\label{main_8c_add3ca9eefe3b5b754426f51d3043e579}} 
+\index{main.c@{main.c}!True@{True}}
+\index{True@{True}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{True}{True}}
+{\footnotesize\ttfamily \#define True~1}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_a771f035e9b04d5d5ba920d3e7fcdce96}\label{main_8c_a771f035e9b04d5d5ba920d3e7fcdce96}} 
+\index{main.c@{main.c}!AEB@{AEB}}
+\index{AEB@{AEB}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{AEB()}{AEB()}}
+{\footnotesize\ttfamily void A\+EB (\begin{DoxyParamCaption}\item[{float}]{distance\+Veh\+Diff\+\_\+aux,  }\item[{float}]{velocity\+Veh\+Diff\+\_\+aux,  }\item[{float}]{velocity\+Veh\+Ego\+\_\+aux,  }\item[{float}]{Decel\+\_\+aux,  }\item[{int}]{road\+Condition\+\_\+aux,  }\item[{int}]{gear\+\_\+aux,  }\item[{int}]{A\+E\+B\+Status\+\_\+aux,  }\item[{int}]{Ego\+Car\+Stop\+\_\+aux,  }\item[{int}]{Status\+Collision\+\_\+aux }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8c_a069fda689be224722658eda819195612}\label{main_8c_a069fda689be224722658eda819195612}} 
+\index{main.c@{main.c}!getRoadCondition@{getRoadCondition}}
+\index{getRoadCondition@{getRoadCondition}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{getRoadCondition()}{getRoadCondition()}}
+{\footnotesize\ttfamily int get\+Road\+Condition (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8c_a10864ef0f95b40880507be17cf1df9a0}\label{main_8c_a10864ef0f95b40880507be17cf1df9a0}} 
+\index{main.c@{main.c}!StoppingTimeCalculation@{StoppingTimeCalculation}}
+\index{StoppingTimeCalculation@{StoppingTimeCalculation}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{StoppingTimeCalculation()}{StoppingTimeCalculation()}}
+{\footnotesize\ttfamily void Stopping\+Time\+Calculation (\begin{DoxyParamCaption}\item[{float}]{Veh\+Speed,  }\item[{float}]{road\+Condition\+Coeff,  }\item[{float}]{driver\+Time\+React,  }\item[{float}]{P\+B\+Decel,  }\item[{float}]{F\+B\+Decel }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{main_8c_a862bd7a9ca51cc843fc1c6e2bebc5bd8}\label{main_8c_a862bd7a9ca51cc843fc1c6e2bebc5bd8}} 
+\index{main.c@{main.c}!TTCCalculation@{TTCCalculation}}
+\index{TTCCalculation@{TTCCalculation}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{TTCCalculation()}{TTCCalculation()}}
+{\footnotesize\ttfamily void T\+T\+C\+Calculation (\begin{DoxyParamCaption}\item[{float}]{distance\+Diff,  }\item[{float}]{velocity\+Diff,  }\item[{int}]{gear\+\_\+state }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8c_ae3858dec078d437332f5ece74cceda97}\label{main_8c_ae3858dec078d437332f5ece74cceda97}} 
+\index{main.c@{main.c}!AEBStatus@{AEBStatus}}
+\index{AEBStatus@{AEBStatus}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{AEBStatus}{AEBStatus}}
+{\footnotesize\ttfamily int A\+E\+B\+Status}
+
+\mbox{\Hypertarget{main_8c_a5af09f5e634f55959684276af78d5490}\label{main_8c_a5af09f5e634f55959684276af78d5490}} 
+\index{main.c@{main.c}!Decel@{Decel}}
+\index{Decel@{Decel}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Decel}{Decel}}
+{\footnotesize\ttfamily float Decel}
+
+\mbox{\Hypertarget{main_8c_a5b86fa4077742364f55e96e853fdb566}\label{main_8c_a5b86fa4077742364f55e96e853fdb566}} 
+\index{main.c@{main.c}!distanceVehDiff@{distanceVehDiff}}
+\index{distanceVehDiff@{distanceVehDiff}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{distanceVehDiff}{distanceVehDiff}}
+{\footnotesize\ttfamily float distance\+Veh\+Diff}
+
+\mbox{\Hypertarget{main_8c_a9bc572f1c278d05742961c39624461c8}\label{main_8c_a9bc572f1c278d05742961c39624461c8}} 
+\index{main.c@{main.c}!EgoCarStop@{EgoCarStop}}
+\index{EgoCarStop@{EgoCarStop}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{EgoCarStop}{EgoCarStop}}
+{\footnotesize\ttfamily int Ego\+Car\+Stop}
+
+\mbox{\Hypertarget{main_8c_ad71ee5c547b1b6623d943e688805cf48}\label{main_8c_ad71ee5c547b1b6623d943e688805cf48}} 
+\index{main.c@{main.c}!FB\_decel\_RESULT@{FB\_decel\_RESULT}}
+\index{FB\_decel\_RESULT@{FB\_decel\_RESULT}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{FB\_decel\_RESULT}{FB\_decel\_RESULT}}
+{\footnotesize\ttfamily float F\+B\+\_\+decel\+\_\+\+R\+E\+S\+U\+LT}
+
+\mbox{\Hypertarget{main_8c_a635cf9bec07c3dcf4757480b172f0e86}\label{main_8c_a635cf9bec07c3dcf4757480b172f0e86}} 
+\index{main.c@{main.c}!FBStoppingTime@{FBStoppingTime}}
+\index{FBStoppingTime@{FBStoppingTime}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{FBStoppingTime}{FBStoppingTime}}
+{\footnotesize\ttfamily float F\+B\+Stopping\+Time}
+
+\mbox{\Hypertarget{main_8c_ad07330b9f5efb1a7754f994580d76816}\label{main_8c_ad07330b9f5efb1a7754f994580d76816}} 
+\index{main.c@{main.c}!FCWactivate@{FCWactivate}}
+\index{FCWactivate@{FCWactivate}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{FCWactivate}{FCWactivate}}
+{\footnotesize\ttfamily int F\+C\+Wactivate}
+
+\mbox{\Hypertarget{main_8c_a2be9689e95e35a42cbfc0a00716f9e2f}\label{main_8c_a2be9689e95e35a42cbfc0a00716f9e2f}} 
+\index{main.c@{main.c}!FCWStoppingTime@{FCWStoppingTime}}
+\index{FCWStoppingTime@{FCWStoppingTime}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{FCWStoppingTime}{FCWStoppingTime}}
+{\footnotesize\ttfamily float F\+C\+W\+Stopping\+Time}
+
+\mbox{\Hypertarget{main_8c_a8527eb5197ac390b1e8a6822d7ec45a9}\label{main_8c_a8527eb5197ac390b1e8a6822d7ec45a9}} 
+\index{main.c@{main.c}!FrontalStatusColision@{FrontalStatusColision}}
+\index{FrontalStatusColision@{FrontalStatusColision}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{FrontalStatusColision}{FrontalStatusColision}}
+{\footnotesize\ttfamily int Frontal\+Status\+Colision}
+
+\mbox{\Hypertarget{main_8c_a59a96c27030264864f20d72caccc7429}\label{main_8c_a59a96c27030264864f20d72caccc7429}} 
+\index{main.c@{main.c}!gear@{gear}}
+\index{gear@{gear}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{gear}{gear}}
+{\footnotesize\ttfamily int gear}
+
+\mbox{\Hypertarget{main_8c_a76a4c51928c208c6e62fb3f915fedb2e}\label{main_8c_a76a4c51928c208c6e62fb3f915fedb2e}} 
+\index{main.c@{main.c}!PB1\_decel\_RESULT@{PB1\_decel\_RESULT}}
+\index{PB1\_decel\_RESULT@{PB1\_decel\_RESULT}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{PB1\_decel\_RESULT}{PB1\_decel\_RESULT}}
+{\footnotesize\ttfamily float P\+B1\+\_\+decel\+\_\+\+R\+E\+S\+U\+LT}
+
+\mbox{\Hypertarget{main_8c_a538fdb19c669287922239c60f4a6c9ff}\label{main_8c_a538fdb19c669287922239c60f4a6c9ff}} 
+\index{main.c@{main.c}!PB1StoppingTime@{PB1StoppingTime}}
+\index{PB1StoppingTime@{PB1StoppingTime}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{PB1StoppingTime}{PB1StoppingTime}}
+{\footnotesize\ttfamily float P\+B1\+Stopping\+Time}
+
+\mbox{\Hypertarget{main_8c_aa81bb54e8f3488532831669d192fdf17}\label{main_8c_aa81bb54e8f3488532831669d192fdf17}} 
+\index{main.c@{main.c}!PB2\_decel\_RESULT@{PB2\_decel\_RESULT}}
+\index{PB2\_decel\_RESULT@{PB2\_decel\_RESULT}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{PB2\_decel\_RESULT}{PB2\_decel\_RESULT}}
+{\footnotesize\ttfamily float P\+B2\+\_\+decel\+\_\+\+R\+E\+S\+U\+LT}
+
+\mbox{\Hypertarget{main_8c_acc2629124661abd70c4ac174c7fb167e}\label{main_8c_acc2629124661abd70c4ac174c7fb167e}} 
+\index{main.c@{main.c}!PB2StoppingTime@{PB2StoppingTime}}
+\index{PB2StoppingTime@{PB2StoppingTime}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{PB2StoppingTime}{PB2StoppingTime}}
+{\footnotesize\ttfamily float P\+B2\+Stopping\+Time}
+
+\mbox{\Hypertarget{main_8c_a6ff50a90ce03c9ef11b8b0fa587a7c7b}\label{main_8c_a6ff50a90ce03c9ef11b8b0fa587a7c7b}} 
+\index{main.c@{main.c}!RearStatusColision@{RearStatusColision}}
+\index{RearStatusColision@{RearStatusColision}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{RearStatusColision}{RearStatusColision}}
+{\footnotesize\ttfamily int Rear\+Status\+Colision}
+
+\mbox{\Hypertarget{main_8c_a007ce468a356a5a3b04126ca8364a09b}\label{main_8c_a007ce468a356a5a3b04126ca8364a09b}} 
+\index{main.c@{main.c}!roadCondition@{roadCondition}}
+\index{roadCondition@{roadCondition}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{roadCondition}{roadCondition}}
+{\footnotesize\ttfamily int road\+Condition}
+
+\mbox{\Hypertarget{main_8c_aba13b371e8c690d763000ea78be0b565}\label{main_8c_aba13b371e8c690d763000ea78be0b565}} 
+\index{main.c@{main.c}!StatusCollision@{StatusCollision}}
+\index{StatusCollision@{StatusCollision}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{StatusCollision}{StatusCollision}}
+{\footnotesize\ttfamily int Status\+Collision = 0}
+
+\mbox{\Hypertarget{main_8c_a466926b479e4fe093b6ff40cb37ee302}\label{main_8c_a466926b479e4fe093b6ff40cb37ee302}} 
+\index{main.c@{main.c}!TTC@{TTC}}
+\index{TTC@{TTC}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{TTC}{TTC}}
+{\footnotesize\ttfamily float T\+TC = 0}
+
+\mbox{\Hypertarget{main_8c_a7a20b79abf4b33f4e92602bfc4fe34b1}\label{main_8c_a7a20b79abf4b33f4e92602bfc4fe34b1}} 
+\index{main.c@{main.c}!velocityVehDiff@{velocityVehDiff}}
+\index{velocityVehDiff@{velocityVehDiff}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{velocityVehDiff}{velocityVehDiff}}
+{\footnotesize\ttfamily float velocity\+Veh\+Diff}
+
+\mbox{\Hypertarget{main_8c_ae263d1f6fdb5393874e416838691e116}\label{main_8c_ae263d1f6fdb5393874e416838691e116}} 
+\index{main.c@{main.c}!velocityVehEgo@{velocityVehEgo}}
+\index{velocityVehEgo@{velocityVehEgo}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{velocityVehEgo}{velocityVehEgo}}
+{\footnotesize\ttfamily float velocity\+Veh\+Ego}
+

@@ -1,0 +1,140 @@
+\hypertarget{AEBFunctions_8h}{}\doxysection{/home/lucas/\+Documents/\+C\+I\+N/\+Projeto\+Final\+U\+F\+P\+E\+\_\+\+A\+E\+B\+\_\+\+Controller/include/\+A\+E\+B\+Functions.h File Reference}
+\label{AEBFunctions_8h}\index{/home/lucas/Documents/CIN/ProjetoFinalUFPE\_AEB\_Controller/include/AEBFunctions.h@{/home/lucas/Documents/CIN/ProjetoFinalUFPE\_AEB\_Controller/include/AEBFunctions.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{AEBFunctions_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float $\ast$ \mbox{\hyperlink{AEBFunctions_8h_ae4f796faefc37b4794493cf97ba1fc7c}{Stopping\+Time\+Calculation}} (float Veh\+Speed, float road\+Cond\+Coeff, float driver\+Time\+React, float P\+B\+Decel, float F\+B\+Decel)
+\begin{DoxyCompactList}\small\item\em Estimates current vehicle stopping time based on current vehicle speed, road conditions, adds driver reaction time. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{AEBFunctions_8h_a6fc79f9360624476b3f281043b0842db}{Sound\+Alert\+Function}} (enum \mbox{\hyperlink{main_8c_ae3858dec078d437332f5ece74cceda97}{A\+E\+B\+Status}})
+\begin{DoxyCompactList}\small\item\em Sound alert to the driver about emergency collision event shall be controlled by the \char`\"{}sound\+Alert\+Control\char`\"{} function. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{AEBFunctions_8h_aa5bbe544d302207adb09bd31c766cadf}{Visual\+Alert\+Function}} (enum \mbox{\hyperlink{main_8c_ae3858dec078d437332f5ece74cceda97}{A\+E\+B\+Status}}, enum Gear\+Pos)
+\begin{DoxyCompactList}\small\item\em Visual alert to the driver about emergency collision event shall be controlled by the \char`\"{}visual\+Alert\+Control\char`\"{} function. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{AEBFunctions_8h_ad22461ce37d693a1bc05876e0881b0bd}{Enabler\+Function}} (float Veh\+Speed, enum Gear\+Pos)
+\begin{DoxyCompactList}\small\item\em A\+EB subsystem functions shall be enabled by the \char`\"{}\+Enabler\+Decision\char`\"{} function. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{AEBFunctions_8h_af06995420a3a75d4d2a8c33ebfc09d47}{Timeto\+Collision\+Calculation}} (float relative\+Distance, float Veh\+Speed)
+\begin{DoxyCompactList}\small\item\em Time to Collision (T\+TC) with the front or rear vehicle obstacle shall be determined by the \char`\"{}\+T\+T\+C\+Calculation\char`\"{} function. \end{DoxyCompactList}\item 
+float $\ast$ \mbox{\hyperlink{AEBFunctions_8h_a57b1814d452f16a05ee7c9b2ee959875}{Collision\+Decision\+Function}} (float \mbox{\hyperlink{main_8c_a466926b479e4fe093b6ff40cb37ee302}{T\+TC}}, enum Gear\+Pos, float P\+B\+Stopping\+Time, float \mbox{\hyperlink{main_8c_a635cf9bec07c3dcf4757480b172f0e86}{F\+B\+Stopping\+Time}}, enum brake\+Pedal\+Stat)
+\begin{DoxyCompactList}\small\item\em Arbitration about A\+EB status and required vehicle deceleration for safe brake shall be defined by the \char`\"{}\+A\+E\+B\+Decision\char`\"{} function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{AEBFunctions_8h_a57b1814d452f16a05ee7c9b2ee959875}\label{AEBFunctions_8h_a57b1814d452f16a05ee7c9b2ee959875}} 
+\index{AEBFunctions.h@{AEBFunctions.h}!CollisionDecisionFunction@{CollisionDecisionFunction}}
+\index{CollisionDecisionFunction@{CollisionDecisionFunction}!AEBFunctions.h@{AEBFunctions.h}}
+\doxysubsubsection{\texorpdfstring{CollisionDecisionFunction()}{CollisionDecisionFunction()}}
+{\footnotesize\ttfamily float$\ast$ Collision\+Decision\+Function (\begin{DoxyParamCaption}\item[{float}]{T\+TC,  }\item[{enum}]{Gear\+Pos,  }\item[{float}]{P\+B\+Stopping\+Time,  }\item[{float}]{F\+B\+Stopping\+Time,  }\item[{enum}]{brake\+Pedal\+Stat }\end{DoxyParamCaption})}
+
+
+
+Arbitration about A\+EB status and required vehicle deceleration for safe brake shall be defined by the \char`\"{}\+A\+E\+B\+Decision\char`\"{} function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em T\+TC} & float. Time to Collision with the Obstacle (lead vehicle) \\
+\hline
+\mbox{\texttt{ in}}  & {\em Gear\+Pos} & enum. Actual Selected Gear Position \\
+\hline
+\mbox{\texttt{ in}}  & {\em P\+B\+Stopping\+Time} & float. Maximum time to apply a partial braking deceleration to the vehicle \\
+\hline
+\mbox{\texttt{ in}}  & {\em F\+B\+Stopping\+Time} & float. Maximum time to apply a full braking deceleration to the vehicle \\
+\hline
+\mbox{\texttt{ in}}  & {\em brake\+Pedal\+Stat} & enum. Brake Pedal Status \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{AEBFunctions_8h_ad22461ce37d693a1bc05876e0881b0bd}\label{AEBFunctions_8h_ad22461ce37d693a1bc05876e0881b0bd}} 
+\index{AEBFunctions.h@{AEBFunctions.h}!EnablerFunction@{EnablerFunction}}
+\index{EnablerFunction@{EnablerFunction}!AEBFunctions.h@{AEBFunctions.h}}
+\doxysubsubsection{\texorpdfstring{EnablerFunction()}{EnablerFunction()}}
+{\footnotesize\ttfamily bool Enabler\+Function (\begin{DoxyParamCaption}\item[{float}]{Veh\+Speed,  }\item[{enum}]{Gear\+Pos }\end{DoxyParamCaption})}
+
+
+
+A\+EB subsystem functions shall be enabled by the \char`\"{}\+Enabler\+Decision\char`\"{} function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Veh\+Speed} & float. Actual Vehicle Speed \\
+\hline
+\mbox{\texttt{ in}}  & {\em Gear\+Pos} & enum. Actual Selected Gear Position \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{AEBFunctions_8h_a6fc79f9360624476b3f281043b0842db}\label{AEBFunctions_8h_a6fc79f9360624476b3f281043b0842db}} 
+\index{AEBFunctions.h@{AEBFunctions.h}!SoundAlertFunction@{SoundAlertFunction}}
+\index{SoundAlertFunction@{SoundAlertFunction}!AEBFunctions.h@{AEBFunctions.h}}
+\doxysubsubsection{\texorpdfstring{SoundAlertFunction()}{SoundAlertFunction()}}
+{\footnotesize\ttfamily bool Sound\+Alert\+Function (\begin{DoxyParamCaption}\item[{enum}]{A\+E\+B\+Status }\end{DoxyParamCaption})}
+
+
+
+Sound alert to the driver about emergency collision event shall be controlled by the \char`\"{}sound\+Alert\+Control\char`\"{} function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A\+E\+B\+Status} & enum. Current A\+EB Status (internal command to activate Visual and Sound alert) \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{AEBFunctions_8h_ae4f796faefc37b4794493cf97ba1fc7c}\label{AEBFunctions_8h_ae4f796faefc37b4794493cf97ba1fc7c}} 
+\index{AEBFunctions.h@{AEBFunctions.h}!StoppingTimeCalculation@{StoppingTimeCalculation}}
+\index{StoppingTimeCalculation@{StoppingTimeCalculation}!AEBFunctions.h@{AEBFunctions.h}}
+\doxysubsubsection{\texorpdfstring{StoppingTimeCalculation()}{StoppingTimeCalculation()}}
+{\footnotesize\ttfamily float$\ast$ Stopping\+Time\+Calculation (\begin{DoxyParamCaption}\item[{float}]{Veh\+Speed,  }\item[{float}]{road\+Cond\+Coeff,  }\item[{float}]{driver\+Time\+React,  }\item[{float}]{P\+B\+Decel,  }\item[{float}]{F\+B\+Decel }\end{DoxyParamCaption})}
+
+
+
+Estimates current vehicle stopping time based on current vehicle speed, road conditions, adds driver reaction time. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em Veh\+Speed} & float. Actual Vehicle Speed \\
+\hline
+\mbox{\texttt{ in}}  & {\em road\+Cond\+Coeff} & float. Percentage of friction coefficient of the road based on vehicle measured climate conditions (wet or dry) \\
+\hline
+\mbox{\texttt{ in}}  & {\em driver\+Time\+React} & float. Configurable additional Driver\textquotesingle{}s Time Reaction to press Brake pedal \\
+\hline
+\mbox{\texttt{ in}}  & {\em P\+B\+Decel} & float. Configurable Partial Braking Deceleration used by A\+EB as deceleration reference \\
+\hline
+\mbox{\texttt{ in}}  & {\em F\+B\+Decel} & float. Configurable Full Braking Deceleration used by A\+EB as deceleration reference \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{AEBFunctions_8h_af06995420a3a75d4d2a8c33ebfc09d47}\label{AEBFunctions_8h_af06995420a3a75d4d2a8c33ebfc09d47}} 
+\index{AEBFunctions.h@{AEBFunctions.h}!TimetoCollisionCalculation@{TimetoCollisionCalculation}}
+\index{TimetoCollisionCalculation@{TimetoCollisionCalculation}!AEBFunctions.h@{AEBFunctions.h}}
+\doxysubsubsection{\texorpdfstring{TimetoCollisionCalculation()}{TimetoCollisionCalculation()}}
+{\footnotesize\ttfamily float Timeto\+Collision\+Calculation (\begin{DoxyParamCaption}\item[{float}]{relative\+Distance,  }\item[{float}]{Veh\+Speed }\end{DoxyParamCaption})}
+
+
+
+Time to Collision (T\+TC) with the front or rear vehicle obstacle shall be determined by the \char`\"{}\+T\+T\+C\+Calculation\char`\"{} function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em relative\+Distance} & float. Relative Distance between Vehicle and Road Obstacle (lead vehicle) \\
+\hline
+\mbox{\texttt{ in}}  & {\em Veh\+Speed} & float. Actual Vehicle Speed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{AEBFunctions_8h_aa5bbe544d302207adb09bd31c766cadf}\label{AEBFunctions_8h_aa5bbe544d302207adb09bd31c766cadf}} 
+\index{AEBFunctions.h@{AEBFunctions.h}!VisualAlertFunction@{VisualAlertFunction}}
+\index{VisualAlertFunction@{VisualAlertFunction}!AEBFunctions.h@{AEBFunctions.h}}
+\doxysubsubsection{\texorpdfstring{VisualAlertFunction()}{VisualAlertFunction()}}
+{\footnotesize\ttfamily enum Visual\+Alert\+Function (\begin{DoxyParamCaption}\item[{enum}]{A\+E\+B\+Status,  }\item[{enum}]{Gear\+Pos }\end{DoxyParamCaption})}
+
+
+
+Visual alert to the driver about emergency collision event shall be controlled by the \char`\"{}visual\+Alert\+Control\char`\"{} function. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em A\+E\+B\+Status} & enum. Current A\+EB Status (internal command to activate Visual and Sound alert) \\
+\hline
+\mbox{\texttt{ in}}  & {\em Gear\+Pos} & enum. Actual Selected Gear Position \\
+\hline
+\end{DoxyParams}
