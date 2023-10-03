@@ -5,38 +5,6 @@
 #include "AEBFunctions.h"
 
 
-// MACROS
-#define OFF 0
-#define ON 1
-#define R 0
-#define D 1
-#define MARGIN_TIME 1.1
-#define TimeReact 1.5
-#define FactorKM_MS 3.6
-
-// ENUM
-enum enum_AEBStatus{NORMAL=0, ALERT=1, ALERT_BRAKE=2};
-enum enum_AEBDecel{ZeroDecel = 0, PBdecel = 6, FBdecel = 8};//tive que alterara pra numero inteiro por causa do enum
-enum enum_States{IDLE_STATE=0, FCW_STATE=1, PB_STATE=2, FB_STATE=3, RCW_STATE=4};
-enum Gear {Drive =1, Reverse =0, Park = 2, Neutro = 3};
-enum brakePedal{Pressed = 1, NotPressed = 0};
-
-/**
-@brief Time to Collision (TTC) with the front or rear vehicle obstacle shall be determined by the "TTCCalculation" function
-
-@param[in] relativeDistance float. Relative Distance between Vehicle and Road Obstacle (lead vehicle)
-@param[in] VehSpeed float. Actual Vehicle Speed
- **/
-float TimetoCollisionCalculation(float relativeDistance,float VehSpeed)
-{   
-    // Initialization of the variables
-    float TTC = OFF;
-
-    // While relativeDistance, VehSpeed are provided, the "TTCCalculation" function shall calculate TTC using following equation
-    TTC = relativeDistance / VehSpeed;
-
-    return TTC;
-}
 
 int CollisionDecisionFunction(float TTC, int GearPos, float PBStoppingTime, float FBStoppingTime, int brakePedalStat, enum enum_States NextStateAEB)
 {
@@ -146,59 +114,7 @@ int CollisionDecisionFunction(float TTC, int GearPos, float PBStoppingTime, floa
 
 
 
-/**
-@brief Visual alert to the driver about emergency collision event shall be controlled by the "visualAlertControl" function
 
-@param[in] AEBStatus enum. Current AEB Status (internal command to activate Visual and Sound alert)
-@param[in] GearPos enum. Actual Selected Gear Position
- **/
-int VisualAlertFunction(int AEBStatus, enum Gear GearPos) //(1) Precisamos verificar se podemos utilizar "enum" como tipo de chamada da função VisualAlertFunction
-{   
-    // Initialization of the variables
-    int visualCmd = 0 ;
-
-    // Verification it´s status in order to activate the Visual Alert
-    if(AEBStatus == NORMAL)
-    {
-        visualCmd = 0; // (2)Favor verificar todas as condições deste condicional. Estes valores recebidos pela variável VisualCmd
-    }
-    else if((AEBStatus == ALERT && GearPos == D) || (AEBStatus == ALERT_BRAKE && GearPos == D))// fazem sentido?? como devemos escrever na variável de forma coreta? Att: Bruno Rosa -
-    {
-         visualCmd = 1;
-    }
-    else if((AEBStatus == ALERT && GearPos == R) || (AEBStatus == ALERT_BRAKE && GearPos == R))
-    {
-        visualCmd = 2;
-    }
-    else
-    {
-        visualCmd = 0; 
-    }
-
-    return visualCmd;
-}
-
-bool EnablerFunction(float TTC, enum Gear GearPos)
-{   
-    // Initialization of the variables
-    bool EnablerStatus;
-
-    // Logical Process to begin the system
-    if((GearPos == D) && ( TTC >= 0 && TTC <= 7.2 ))
-    {
-        EnablerStatus = ON;
-    }
-    else if((GearPos == R) && ( TTC >= 0 && TTC <= 2 ))
-    {
-        EnablerStatus = ON;
-    }
-    else
-    {
-        EnablerStatus = OFF;
-    }
-
-    return EnablerStatus;
-}
 
 int main(int argc, char *argv[])
 {
@@ -239,14 +155,14 @@ int main(int argc, char *argv[])
         printf("\nActual VehSpeed: %f km/h",  VehSpeed_ms*FactorKM_MS);
         printf("\nActual relativeDistance: %f  (m)",  relativeDistance);
         printf("\nroadCondCoeff: %f",  roadCondCoeff);
-        TTC = TimetoCollisionCalculation(relativeDistance, VehSpeed_ms);
+        TTC = TTCCalculation(relativeDistance, VehSpeed_ms);
         printf("\nTTC = %f\n", TTC );
         EnableAEB =  EnablerFunction(TTC, GearPos);
         if (EnableAEB == ON)
         {
             StoppingTime = StoppingTimeCalculation(VehSpeed_ms,roadCondCoeff, TimeReact , PBdecel, FBdecel);
             AEBState = CollisionDecisionFunction(TTC, GearPos, *(StoppingTime), *(StoppingTime+1), brakePedalStat, AEBState);
-            VisualCMD = VisualAlertFunction(AEBStatus, GearPos);
+            VisualCMD = visualAlertControl(AEBStatus, GearPos);
 
             switch (AEBState)
             {
