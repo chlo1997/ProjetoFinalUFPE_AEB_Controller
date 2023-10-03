@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AEB: /home/lucas/Documents/CIN/ProjetoFinalUFPE_AEB_Controller/main.c File Reference</title>
+<title>Automatic Emergency Braking (AEB) System: /home/lucas/Documents/CIN/ProjetoFinalUFPE_AEB_Controller/src/main.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AEB
+   <div id="projectname">Automatic Emergency Braking (AEB) System
    </div>
   </td>
  </tr>
@@ -59,315 +59,86 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">/home/lucas/Documents/CIN/ProjetoFinalUFPE_AEB_Controller/main.c File Reference</div>  </div>
+<div class="title">main.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;math.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="AEBFunctions_8h_source.html">AEBFunctions.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for main.c:</div>
 <div class="dyncontent">
-<div class="center"><img src="main_8c__incl.png" border="0" usemap="#_2home_2lucas_2Documents_2CIN_2ProjetoFinalUFPE__AEB__Controller_2main_8c" alt=""/></div>
-<map name="_2home_2lucas_2Documents_2CIN_2ProjetoFinalUFPE__AEB__Controller_2main_8c" id="_2home_2lucas_2Documents_2CIN_2ProjetoFinalUFPE__AEB__Controller_2main_8c">
-<area shape="rect" title=" " alt="" coords="129,5,293,61"/>
+<div class="center"><img src="main_8c__incl.png" border="0" usemap="#_2home_2lucas_2Documents_2CIN_2ProjetoFinalUFPE__AEB__Controller_2src_2main_8c" alt=""/></div>
+<map name="_2home_2lucas_2Documents_2CIN_2ProjetoFinalUFPE__AEB__Controller_2src_2main_8c" id="_2home_2lucas_2Documents_2CIN_2ProjetoFinalUFPE__AEB__Controller_2src_2main_8c">
+<area shape="rect" title=" " alt="" coords="119,5,303,61"/>
 <area shape="rect" title=" " alt="" coords="5,109,67,136"/>
 <area shape="rect" title=" " alt="" coords="91,109,154,136"/>
 <area shape="rect" title=" " alt="" coords="178,109,243,136"/>
-<area shape="rect" title=" " alt="" coords="268,109,327,136"/>
-<area shape="rect" href="AEBFunctions_8h.html" title=" " alt="" coords="351,109,468,136"/>
+<area shape="rect" title=" " alt="" coords="268,109,343,136"/>
+<area shape="rect" href="AEBFunctions_8h.html" title=" " alt="" coords="367,109,484,136"/>
 </map>
 </div>
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:ae69e075d1d0c49f988615b1c2702b2de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae69e075d1d0c49f988615b1c2702b2de">PB1_decel</a>&#160;&#160;&#160;5.27</td></tr>
-<tr class="separator:ae69e075d1d0c49f988615b1c2702b2de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a678aa6a9ca129c6b9bbcbfaf0d0348df"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a678aa6a9ca129c6b9bbcbfaf0d0348df">PB2_decel</a>&#160;&#160;&#160;6.29</td></tr>
-<tr class="separator:a678aa6a9ca129c6b9bbcbfaf0d0348df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c53d27fa7687c72a4d43321c5d3621c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a6c53d27fa7687c72a4d43321c5d3621c">FB_decel</a>&#160;&#160;&#160;7.3</td></tr>
-<tr class="separator:a6c53d27fa7687c72a4d43321c5d3621c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec40f61f9201ccb2e776f222bb6c286a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aec40f61f9201ccb2e776f222bb6c286a">rainParameter</a>&#160;&#160;&#160;0.625</td></tr>
-<tr class="separator:aec40f61f9201ccb2e776f222bb6c286a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af16152ffe1489bfa11b01bdee7572426"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#af16152ffe1489bfa11b01bdee7572426">minVelocity</a>&#160;&#160;&#160;1.38</td></tr>
-<tr class="separator:af16152ffe1489bfa11b01bdee7572426"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a095540ad1bdf4063c84de61db182afd3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a095540ad1bdf4063c84de61db182afd3">reactTime</a>&#160;&#160;&#160;1.5</td></tr>
-<tr class="separator:a095540ad1bdf4063c84de61db182afd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e6c4e84992d47418c949ac21bbef202"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a6e6c4e84992d47418c949ac21bbef202">FrontalSafetyDistance</a>&#160;&#160;&#160;10.0</td></tr>
-<tr class="separator:a6e6c4e84992d47418c949ac21bbef202"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0986faad1aa94ac6769f28430720018"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ac0986faad1aa94ac6769f28430720018">RearSafetyDistance</a>&#160;&#160;&#160;0.1</td></tr>
-<tr class="separator:ac0986faad1aa94ac6769f28430720018"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add3ca9eefe3b5b754426f51d3043e579"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#add3ca9eefe3b5b754426f51d3043e579">True</a>&#160;&#160;&#160;1</td></tr>
-<tr class="separator:add3ca9eefe3b5b754426f51d3043e579"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a306ebd41c0cd1303b1372c6153f0caf8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a306ebd41c0cd1303b1372c6153f0caf8">False</a>&#160;&#160;&#160;0</td></tr>
-<tr class="separator:a306ebd41c0cd1303b1372c6153f0caf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a862bd7a9ca51cc843fc1c6e2bebc5bd8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a862bd7a9ca51cc843fc1c6e2bebc5bd8">TTCCalculation</a> (float distanceDiff, float velocityDiff, int gear_state)</td></tr>
-<tr class="separator:a862bd7a9ca51cc843fc1c6e2bebc5bd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10864ef0f95b40880507be17cf1df9a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a10864ef0f95b40880507be17cf1df9a0">StoppingTimeCalculation</a> (float VehSpeed, float roadConditionCoeff, float driverTimeReact, float PBDecel, float FBDecel)</td></tr>
-<tr class="separator:a10864ef0f95b40880507be17cf1df9a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a771f035e9b04d5d5ba920d3e7fcdce96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a771f035e9b04d5d5ba920d3e7fcdce96">AEB</a> (float distanceVehDiff_aux, float velocityVehDiff_aux, float velocityVehEgo_aux, float Decel_aux, int roadCondition_aux, int gear_aux, int AEBStatus_aux, int EgoCarStop_aux, int StatusCollision_aux)</td></tr>
-<tr class="separator:a771f035e9b04d5d5ba920d3e7fcdce96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a069fda689be224722658eda819195612"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a069fda689be224722658eda819195612">getRoadCondition</a> ()</td></tr>
-<tr class="separator:a069fda689be224722658eda819195612"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13f2a7870726615a89fc0407ee4b0d28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a13f2a7870726615a89fc0407ee4b0d28">CollisionDecisionFunction</a> (float TTC, int GearPos, float PBStoppingTime, float FBStoppingTime, int brakePedalStat, enum <a class="el" href="AEBFunctions_8h.html#afc716a390b1a76957803f8faf21ab9a1">enum_States</a> NextStateAEB)</td></tr>
+<tr class="separator:a13f2a7870726615a89fc0407ee4b0d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a5b86fa4077742364f55e96e853fdb566"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a5b86fa4077742364f55e96e853fdb566">distanceVehDiff</a></td></tr>
-<tr class="separator:a5b86fa4077742364f55e96e853fdb566"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a20b79abf4b33f4e92602bfc4fe34b1"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a7a20b79abf4b33f4e92602bfc4fe34b1">velocityVehDiff</a></td></tr>
-<tr class="separator:a7a20b79abf4b33f4e92602bfc4fe34b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae263d1f6fdb5393874e416838691e116"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae263d1f6fdb5393874e416838691e116">velocityVehEgo</a></td></tr>
-<tr class="separator:ae263d1f6fdb5393874e416838691e116"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5af09f5e634f55959684276af78d5490"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a5af09f5e634f55959684276af78d5490">Decel</a></td></tr>
-<tr class="separator:a5af09f5e634f55959684276af78d5490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76a4c51928c208c6e62fb3f915fedb2e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a76a4c51928c208c6e62fb3f915fedb2e">PB1_decel_RESULT</a></td></tr>
-<tr class="separator:a76a4c51928c208c6e62fb3f915fedb2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa81bb54e8f3488532831669d192fdf17"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aa81bb54e8f3488532831669d192fdf17">PB2_decel_RESULT</a></td></tr>
-<tr class="separator:aa81bb54e8f3488532831669d192fdf17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad71ee5c547b1b6623d943e688805cf48"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ad71ee5c547b1b6623d943e688805cf48">FB_decel_RESULT</a></td></tr>
-<tr class="separator:ad71ee5c547b1b6623d943e688805cf48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a538fdb19c669287922239c60f4a6c9ff"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a538fdb19c669287922239c60f4a6c9ff">PB1StoppingTime</a></td></tr>
-<tr class="separator:a538fdb19c669287922239c60f4a6c9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc2629124661abd70c4ac174c7fb167e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#acc2629124661abd70c4ac174c7fb167e">PB2StoppingTime</a></td></tr>
-<tr class="separator:acc2629124661abd70c4ac174c7fb167e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a635cf9bec07c3dcf4757480b172f0e86"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a635cf9bec07c3dcf4757480b172f0e86">FBStoppingTime</a></td></tr>
-<tr class="separator:a635cf9bec07c3dcf4757480b172f0e86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2be9689e95e35a42cbfc0a00716f9e2f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a2be9689e95e35a42cbfc0a00716f9e2f">FCWStoppingTime</a></td></tr>
-<tr class="separator:a2be9689e95e35a42cbfc0a00716f9e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a466926b479e4fe093b6ff40cb37ee302"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a466926b479e4fe093b6ff40cb37ee302">TTC</a> = 0</td></tr>
-<tr class="separator:a466926b479e4fe093b6ff40cb37ee302"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a007ce468a356a5a3b04126ca8364a09b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a007ce468a356a5a3b04126ca8364a09b">roadCondition</a></td></tr>
-<tr class="separator:a007ce468a356a5a3b04126ca8364a09b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59a96c27030264864f20d72caccc7429"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a59a96c27030264864f20d72caccc7429">gear</a></td></tr>
-<tr class="separator:a59a96c27030264864f20d72caccc7429"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3858dec078d437332f5ece74cceda97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae3858dec078d437332f5ece74cceda97">AEBStatus</a></td></tr>
-<tr class="separator:ae3858dec078d437332f5ece74cceda97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad07330b9f5efb1a7754f994580d76816"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ad07330b9f5efb1a7754f994580d76816">FCWactivate</a></td></tr>
-<tr class="separator:ad07330b9f5efb1a7754f994580d76816"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9bc572f1c278d05742961c39624461c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a9bc572f1c278d05742961c39624461c8">EgoCarStop</a></td></tr>
-<tr class="separator:a9bc572f1c278d05742961c39624461c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8527eb5197ac390b1e8a6822d7ec45a9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a8527eb5197ac390b1e8a6822d7ec45a9">FrontalStatusColision</a></td></tr>
-<tr class="separator:a8527eb5197ac390b1e8a6822d7ec45a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ff50a90ce03c9ef11b8b0fa587a7c7b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a6ff50a90ce03c9ef11b8b0fa587a7c7b">RearStatusColision</a></td></tr>
-<tr class="separator:a6ff50a90ce03c9ef11b8b0fa587a7c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba13b371e8c690d763000ea78be0b565"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#aba13b371e8c690d763000ea78be0b565">StatusCollision</a> = 0</td></tr>
-<tr class="separator:aba13b371e8c690d763000ea78be0b565"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a306ebd41c0cd1303b1372c6153f0caf8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a306ebd41c0cd1303b1372c6153f0caf8">&#9670;&nbsp;</a></span>False</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define False&#160;&#160;&#160;0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6c53d27fa7687c72a4d43321c5d3621c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c53d27fa7687c72a4d43321c5d3621c">&#9670;&nbsp;</a></span>FB_decel</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define FB_decel&#160;&#160;&#160;7.3</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6e6c4e84992d47418c949ac21bbef202"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e6c4e84992d47418c949ac21bbef202">&#9670;&nbsp;</a></span>FrontalSafetyDistance</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define FrontalSafetyDistance&#160;&#160;&#160;10.0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="af16152ffe1489bfa11b01bdee7572426"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af16152ffe1489bfa11b01bdee7572426">&#9670;&nbsp;</a></span>minVelocity</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define minVelocity&#160;&#160;&#160;1.38</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae69e075d1d0c49f988615b1c2702b2de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae69e075d1d0c49f988615b1c2702b2de">&#9670;&nbsp;</a></span>PB1_decel</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define PB1_decel&#160;&#160;&#160;5.27</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a678aa6a9ca129c6b9bbcbfaf0d0348df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a678aa6a9ca129c6b9bbcbfaf0d0348df">&#9670;&nbsp;</a></span>PB2_decel</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define PB2_decel&#160;&#160;&#160;6.29</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aec40f61f9201ccb2e776f222bb6c286a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec40f61f9201ccb2e776f222bb6c286a">&#9670;&nbsp;</a></span>rainParameter</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define rainParameter&#160;&#160;&#160;0.625</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a095540ad1bdf4063c84de61db182afd3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a095540ad1bdf4063c84de61db182afd3">&#9670;&nbsp;</a></span>reactTime</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define reactTime&#160;&#160;&#160;1.5</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac0986faad1aa94ac6769f28430720018"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0986faad1aa94ac6769f28430720018">&#9670;&nbsp;</a></span>RearSafetyDistance</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define RearSafetyDistance&#160;&#160;&#160;0.1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="add3ca9eefe3b5b754426f51d3043e579"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add3ca9eefe3b5b754426f51d3043e579">&#9670;&nbsp;</a></span>True</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define True&#160;&#160;&#160;1</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a771f035e9b04d5d5ba920d3e7fcdce96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a771f035e9b04d5d5ba920d3e7fcdce96">&#9670;&nbsp;</a></span>AEB()</h2>
+<a id="a13f2a7870726615a89fc0407ee4b0d28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13f2a7870726615a89fc0407ee4b0d28">&#9670;&nbsp;</a></span>CollisionDecisionFunction()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void AEB </td>
+          <td class="memname">int CollisionDecisionFunction </td>
           <td>(</td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>distanceVehDiff_aux</em>, </td>
+          <td class="paramname"><em>TTC</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>GearPos</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>velocityVehDiff_aux</em>, </td>
+          <td class="paramname"><em>PBStoppingTime</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>velocityVehEgo_aux</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>Decel_aux</em>, </td>
+          <td class="paramname"><em>FBStoppingTime</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>roadCondition_aux</em>, </td>
+          <td class="paramname"><em>brakePedalStat</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>gear_aux</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>AEBStatus_aux</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>EgoCarStop_aux</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>StatusCollision_aux</em>&#160;</td>
+          <td class="paramtype">enum <a class="el" href="AEBFunctions_8h.html#afc716a390b1a76957803f8faf21ab9a1">enum_States</a>&#160;</td>
+          <td class="paramname"><em>NextStateAEB</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -376,23 +147,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a069fda689be224722658eda819195612"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a069fda689be224722658eda819195612">&#9670;&nbsp;</a></span>getRoadCondition()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int getRoadCondition </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>||((brakePedalStat == Pressed ) &amp;&amp; (GearPos == D))||(brakePedalStat == Pressed)||(TTC &gt; MARGIN_TIME*PBStoppingTime)</p>
 
 </div>
 </div>
@@ -421,367 +176,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a10864ef0f95b40880507be17cf1df9a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10864ef0f95b40880507be17cf1df9a0">&#9670;&nbsp;</a></span>StoppingTimeCalculation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void StoppingTimeCalculation </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>VehSpeed</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>roadConditionCoeff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>driverTimeReact</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>PBDecel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>FBDecel</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a862bd7a9ca51cc843fc1c6e2bebc5bd8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a862bd7a9ca51cc843fc1c6e2bebc5bd8">&#9670;&nbsp;</a></span>TTCCalculation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void TTCCalculation </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>distanceDiff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>velocityDiff</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>gear_state</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="ae3858dec078d437332f5ece74cceda97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3858dec078d437332f5ece74cceda97">&#9670;&nbsp;</a></span>AEBStatus</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int AEBStatus</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5af09f5e634f55959684276af78d5490"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5af09f5e634f55959684276af78d5490">&#9670;&nbsp;</a></span>Decel</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float Decel</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a5b86fa4077742364f55e96e853fdb566"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b86fa4077742364f55e96e853fdb566">&#9670;&nbsp;</a></span>distanceVehDiff</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float distanceVehDiff</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a9bc572f1c278d05742961c39624461c8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9bc572f1c278d05742961c39624461c8">&#9670;&nbsp;</a></span>EgoCarStop</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int EgoCarStop</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad71ee5c547b1b6623d943e688805cf48"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad71ee5c547b1b6623d943e688805cf48">&#9670;&nbsp;</a></span>FB_decel_RESULT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float FB_decel_RESULT</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a635cf9bec07c3dcf4757480b172f0e86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a635cf9bec07c3dcf4757480b172f0e86">&#9670;&nbsp;</a></span>FBStoppingTime</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float FBStoppingTime</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad07330b9f5efb1a7754f994580d76816"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad07330b9f5efb1a7754f994580d76816">&#9670;&nbsp;</a></span>FCWactivate</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int FCWactivate</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a2be9689e95e35a42cbfc0a00716f9e2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2be9689e95e35a42cbfc0a00716f9e2f">&#9670;&nbsp;</a></span>FCWStoppingTime</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float FCWStoppingTime</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a8527eb5197ac390b1e8a6822d7ec45a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8527eb5197ac390b1e8a6822d7ec45a9">&#9670;&nbsp;</a></span>FrontalStatusColision</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int FrontalStatusColision</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a59a96c27030264864f20d72caccc7429"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a59a96c27030264864f20d72caccc7429">&#9670;&nbsp;</a></span>gear</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int gear</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a76a4c51928c208c6e62fb3f915fedb2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76a4c51928c208c6e62fb3f915fedb2e">&#9670;&nbsp;</a></span>PB1_decel_RESULT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float PB1_decel_RESULT</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a538fdb19c669287922239c60f4a6c9ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a538fdb19c669287922239c60f4a6c9ff">&#9670;&nbsp;</a></span>PB1StoppingTime</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float PB1StoppingTime</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aa81bb54e8f3488532831669d192fdf17"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa81bb54e8f3488532831669d192fdf17">&#9670;&nbsp;</a></span>PB2_decel_RESULT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float PB2_decel_RESULT</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="acc2629124661abd70c4ac174c7fb167e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acc2629124661abd70c4ac174c7fb167e">&#9670;&nbsp;</a></span>PB2StoppingTime</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float PB2StoppingTime</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a6ff50a90ce03c9ef11b8b0fa587a7c7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ff50a90ce03c9ef11b8b0fa587a7c7b">&#9670;&nbsp;</a></span>RearStatusColision</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int RearStatusColision</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a007ce468a356a5a3b04126ca8364a09b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a007ce468a356a5a3b04126ca8364a09b">&#9670;&nbsp;</a></span>roadCondition</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int roadCondition</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aba13b371e8c690d763000ea78be0b565"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba13b371e8c690d763000ea78be0b565">&#9670;&nbsp;</a></span>StatusCollision</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int StatusCollision = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a466926b479e4fe093b6ff40cb37ee302"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a466926b479e4fe093b6ff40cb37ee302">&#9670;&nbsp;</a></span>TTC</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float TTC = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a7a20b79abf4b33f4e92602bfc4fe34b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a20b79abf4b33f4e92602bfc4fe34b1">&#9670;&nbsp;</a></span>velocityVehDiff</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float velocityVehDiff</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ae263d1f6fdb5393874e416838691e116"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae263d1f6fdb5393874e416838691e116">&#9670;&nbsp;</a></span>velocityVehEgo</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float velocityVehEgo</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>SIMULATE VELOCITY AND DISTANCE</p>
 
 </div>
 </div>
