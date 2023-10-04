@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['off_1118',['OFF',['../AEBFunctions_8h.html#a29e413f6725b2ba32d165ffaa35b01e5',1,'AEBFunctions.h']]],
-  ['on_1119',['ON',['../AEBFunctions_8h.html#ad76d1750a6cdeebd506bfcd6752554d2',1,'AEBFunctions.h']]]
+  ['r_79',['R',['../AEBFunctions_8h.html#a5c71a5e59a53413cd6c270266d63b031',1,'AEBFunctions.h']]]
 ];

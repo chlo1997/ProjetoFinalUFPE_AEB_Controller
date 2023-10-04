@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['margin_5ftime_1117',['MARGIN_TIME',['../AEBFunctions_8h.html#a61f73c6d179f822564b7bdfb6ddfdc20',1,'AEBFunctions.h']]]
+  ['off_77',['OFF',['../AEBFunctions_8h.html#a29e413f6725b2ba32d165ffaa35b01e5',1,'AEBFunctions.h']]],
+  ['on_78',['ON',['../AEBFunctions_8h.html#ad76d1750a6cdeebd506bfcd6752554d2',1,'AEBFunctions.h']]]
 ];
