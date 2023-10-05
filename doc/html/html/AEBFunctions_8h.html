@@ -153,6 +153,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a6df1643d5df9aa77813d263f0f8963d3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AEBFunctions_8h.html#a6df1643d5df9aa77813d263f0f8963d3">soundAlertControl</a> (enum <a class="el" href="AEBFunctions_8h.html#ab670c8741fdb0ca89b6df5f0ed86f336">enum_AEBStatus</a> AEBStatus)</td></tr>
 <tr class="memdesc:a6df1643d5df9aa77813d263f0f8963d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Control alert to the driver about emergency collision event using sound command.  <a href="AEBFunctions_8h.html#a6df1643d5df9aa77813d263f0f8963d3">More...</a><br /></td></tr>
 <tr class="separator:a6df1643d5df9aa77813d263f0f8963d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13f2a7870726615a89fc0407ee4b0d28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="AEBFunctions_8h.html#a13f2a7870726615a89fc0407ee4b0d28">CollisionDecisionFunction</a> (float TTC, int GearPos, float PBStoppingTime, float FBStoppingTime, int brakePedalStat, enum <a class="el" href="AEBFunctions_8h.html#afc716a390b1a76957803f8faf21ab9a1">enum_States</a> NextStateAEB)</td></tr>
+<tr class="memdesc:a13f2a7870726615a89fc0407ee4b0d28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Arbitrates about AEB status and required vehicle deceleration for safe brake.  <a href="AEBFunctions_8h.html#a13f2a7870726615a89fc0407ee4b0d28">More...</a><br /></td></tr>
+<tr class="separator:a13f2a7870726615a89fc0407ee4b0d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="af316c33cc298530f245e8b55330e86b5"></a>
@@ -352,6 +355,74 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a13f2a7870726615a89fc0407ee4b0d28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13f2a7870726615a89fc0407ee4b0d28">&#9670;&nbsp;</a></span>CollisionDecisionFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CollisionDecisionFunction </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>TTC</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>GearPos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>PBStoppingTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>FBStoppingTime</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>brakePedalStat</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">enum <a class="el" href="AEBFunctions_8h.html#afc716a390b1a76957803f8faf21ab9a1">enum_States</a>&#160;</td>
+          <td class="paramname"><em>CurrentStateAEB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Arbitrates about AEB status and required vehicle deceleration for safe brake. </p>
+<p>This function implements the AEB status arbitration which is a decision fucntion to a finite state machine (FSM).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">TTC</td><td>float. Time To Collision </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">GearPos</td><td>enum. Current selected gear position </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">PBStoppingTime</td><td>float. Maximum time to apply a partial braking deceleration </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">FBStoppingTime</td><td>float. Maximum time to apply a Full braking deceleration </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">brakePedalStat</td><td>int. Brake pedal pressed status </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">CurrentStateAEB</td><td>enum. Receives current AEB status according to the last arbitration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>NextStateAEB enum. Decides next AEB status according to the last state and system inputs </dd></dl>
+<p>||((brakePedalStat == Pressed ) &amp;&amp; (GearPos == D))||(brakePedalStat == Pressed)||(TTC &gt; MARGIN_TIME*PBStoppingTime)</p>
+
+</div>
+</div>
 <a id="af62969cea0c26771bb0b6ad92780dc24"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af62969cea0c26771bb0b6ad92780dc24">&#9670;&nbsp;</a></span>EnablerFunction()</h2>
 
@@ -386,6 +457,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>EnablerStatus bool. Provides status for enabling AEB decision </dd></dl>
 
 </div>
 </div>
@@ -408,10 +480,11 @@ Functions</h2></td></tr>
 <p>Control alert to the driver about emergency collision event using sound command. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">AEBStatus</td><td>enum. Current AEB Status (internal command to activate Visual and Sound alert) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">AEBStatus</td><td>enum. Current AEB Status </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>soundCmd enum. Activation command of AEB sound alert </dd></dl>
 
 </div>
 </div>
@@ -470,6 +543,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>StoppingTime float. Estimates current vehicle stopping time based on current vehicle speed, road conditions, adds driver reaction time </dd></dl>
 
 </div>
 </div>
@@ -507,6 +581,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>TTC float. Time to collision. </dd></dl>
 
 </div>
 </div>
@@ -539,11 +614,12 @@ Functions</h2></td></tr>
 <p>Control alert to the driver about emergency collision event using display command. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">AEBStatus</td><td>enum. Current AEB Status (internal command to activate Visual and Sound alert) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">AEBStatus</td><td>enum. Current AEB Status </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">GearPos</td><td>enum. Actual Selected Gear Position </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>visualCmd int. Activation command of AEB visual alert </dd></dl>
 
 </div>
 </div>
