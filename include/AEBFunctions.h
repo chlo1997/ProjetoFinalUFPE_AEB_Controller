@@ -26,9 +26,6 @@ float TTCCalculation(float relativeDistance, float VehSpeed);
 bool EnablerFunction(float TTC, enum Gear GearPos);
 int visualAlertControl(int AEBStatus, enum Gear GearPos);
 bool soundAlertControl(enum enum_AEBStatus AEBStatus);
-
-
-// TO DO
-// float *CollisionDecisionFunction(float TTC, enum GearPos, float PBStoppingTime, float FBStoppingTime, enum brakePedalStat);
+int CollisionDecisionFunction(float TTC, int GearPos, float PBStoppingTime, float FBStoppingTime, int brakePedalStat, enum enum_States NextStateAEB);
 
 #endif //AEBFUNCTIONS_H
