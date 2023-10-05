@@ -1,6 +1,6 @@
 #ifndef AEBFUNCTIONS_H
 #define AEBFUNCTIONS_H
-
+#include <stdbool.h>
 
 // MACROS
 #define OFF 0

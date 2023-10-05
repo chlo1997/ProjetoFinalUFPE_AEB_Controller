@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
-#include "AEBFunctions.h"
+#include "../include/AEBFunctions.h"
 
 
 /**
@@ -71,7 +71,7 @@ bool EnablerFunction(float TTC, enum Gear GearPos)
     }
     else
     {
-        EnablerStatus = true;
+        EnablerStatus = false;
     }
 
     return EnablerStatus;
@@ -178,7 +178,6 @@ int CollisionDecisionFunction(float TTC, int GearPos, float PBStoppingTime, floa
 
             break;
         case FCW_STATE:
-
             if(((TTC <= PBStoppingTime) && (brakePedalStat == NotPressed))) //  Conditions to reach the PBraking state
             {   
                 NextStateAEB = PB_STATE;   
@@ -193,13 +192,12 @@ int CollisionDecisionFunction(float TTC, int GearPos, float PBStoppingTime, floa
             }
             break;
         case PB_STATE:
-        {
             if((TTC <= FBStoppingTime)||((TTC <= FBStoppingTime) && (brakePedalStat == NotPressed)))// Conditions to reach the FBraking state
             {   
                 NextStateAEB = FB_STATE;
 
             }
-            else if(TTC > MARGIN_TIME*PBStoppingTime || brakePedalStat == Pressed)
+            else if((TTC > MARGIN_TIME*PBStoppingTime) || (brakePedalStat == Pressed))
             {   
                 NextStateAEB = FCW_STATE;
             }
@@ -208,9 +206,8 @@ int CollisionDecisionFunction(float TTC, int GearPos, float PBStoppingTime, floa
                 NextStateAEB = PB_STATE;
             } 
             break;
-        }
+    
         case FB_STATE:
-        { 
             if((TTC <= FBStoppingTime)||((TTC <= FBStoppingTime) && (brakePedalStat == NotPressed)))// Conditions to reach the FBraking state
             {   
                 NextStateAEB = FB_STATE;
@@ -246,7 +243,6 @@ int CollisionDecisionFunction(float TTC, int GearPos, float PBStoppingTime, floa
                     NextStateAEB = RCW_STATE;  
                 }
             break;  
-        }
         default:
             break;
     }
