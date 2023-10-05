@@ -16,4 +16,3 @@ jobs:
           branch: gh-pages
           folder: .
           config_file: ./doc/Doxyfile
-          target_folder: ./doc/html
