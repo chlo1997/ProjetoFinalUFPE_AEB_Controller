@@ -2,7 +2,8 @@
 #include <math.h>
 #include <string.h>
 #include <stdbool.h>
-#include "AEBFunctions.h"
+#include "../include/AEBFunctions.h"
+#include "AEBFunctions.c"
 
 
 
